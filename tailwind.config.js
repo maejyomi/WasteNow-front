@@ -5,6 +5,9 @@ module.exports = {
     extend: {
       colors : {
         'now-blue' : '#5B8DFF',
+      },
+      fontFamily : {
+        sans : ["Nanum Gothic", "sans-serif"]
       }
     },
   },
