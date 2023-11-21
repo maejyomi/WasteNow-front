@@ -4,11 +4,12 @@ module.exports = {
   theme: {
     extend: {
       colors : {
-        'now-blue' : '#5B8DFF',
+        'now-blue' : '#5586f8',
       },
       fontFamily : {
         sans : ["Nanum Gothic", "sans-serif"]
-      }
+      },
+      
     },
   },
   plugins: [require('@tailwindcss/forms')],
