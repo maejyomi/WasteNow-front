@@ -15,7 +15,8 @@ const SignUp = () => {
             return;
         }
         if(pwd.current.value != pwdCheck.current.value){
-            alert("비밀번호를 확인하세요")
+            alert("비밀번호를 확인하세요");
+            pwdCheck.current.focus();
             return;
         }
 
@@ -30,12 +31,11 @@ const SignUp = () => {
                     alert("회원가입이 완료되었습니다.\n로그인 페이지로 돌아갑니다.");
                     navigate("/login");
                 })
-                .catch(err =>{
+                .catch((err) =>{
                     console.log(err);
-                })
-
-        
-        console.log("test");
+                    alert("이미 존재하는 아이디입니다");
+                    id.current.focus();
+                });
 
     }
 
