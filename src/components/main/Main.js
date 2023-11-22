@@ -1,6 +1,5 @@
-import { useState } from 'react';
-import search from '../images/search.jpg';
-import share from '../images/share.jpg';
+import search from '../../images/search.jpg';
+import share from '../../images/share.jpg';
 import MainBtn from './MainBtn';
 import { useNavigate } from 'react-router-dom';
 

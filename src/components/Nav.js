@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { Link } from "react-router-dom"
 import { useRecoilState } from "recoil";
-import { LoginStateAtom } from "./LoginStateAtom";
+import { LoginStateAtom } from "./member/LoginStateAtom";
 
 const Nav = () => {
 

@@ -1,13 +1,14 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css';
-import Main from './components/Main';
+import Main from './components/main/Main';
 import Nav from './components/Nav';
 import Search from './components/Search';
-import Login from './components/Login';
-import SignUp from './components/SignUp';
-import NanoomList from './components/NanoomList';
-import NanoomPost from './components/NanoomPost';
+import Login from './components/member/Login';
+import SignUp from './components/member/SignUp';
+import NanoomList from './components/board/NanoomList';
+import NanoomPost from './components/board/NanoomPost';
 import { RecoilRoot } from 'recoil';
+import NanoomDetail from './components/board/NanoomDetail';
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
             <Route path='/signup' element={<SignUp />}></Route>
             <Route path='/nanoomlist' element={<NanoomList />}></Route>
             <Route path='/nanoompost' element={<NanoomPost />}></Route>
+            <Route path='/nanoomdetail' element={<NanoomDetail />}></Route>
           </Routes>
         </RecoilRoot>
       </main>

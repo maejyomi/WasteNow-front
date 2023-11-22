@@ -25,7 +25,7 @@ const SignUp = () => {
             password : pwd.current.value
         };
         
-        axios.post("http://10.125.121.214:8080/signup",signUpData)
+        axios.post("http://10.125.121.214:8080/api/signup",signUpData)
                 .then((resp)=>{
 
                     alert("회원가입이 완료되었습니다.\n로그인 페이지로 돌아갑니다.");

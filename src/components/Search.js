@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import MySelect from "../comm/MySelect";
+import CustomSelect from "./CustomSelect";
 
 
 const Search = () => {
@@ -53,7 +53,7 @@ const Search = () => {
     }
 
     useEffect(() => {
-        console.log(searchData);
+        
         if(!searchData) return;
 
         // 데이터 없을 때 처리 (나중에 수정)
@@ -88,19 +88,19 @@ const Search = () => {
 
 
     return (
-        <div className="grow mt-[5rem] px-[8rem]">
+        <div className="grow mt-[2rem] px-[8rem]">
             <div className="grid grid-cols-5 gap-4">
                 <div>
-                    <MySelect optionItem={selSido} handleChange={sidoChange} />
+                    <CustomSelect optionItem={selSido} handleChange={sidoChange} />
                 </div>
                 <div>
-                    <MySelect optionItem={selCate} handleChange={cateChange} />
+                    <CustomSelect optionItem={selCate} handleChange={cateChange} />
                 </div>
                 <div className="col-span-2">
                     <input type="text"
                         ref={keyword}
                         placeholder="키워드를 입력해주세요"
-                        className="w-full h-[3rem] px-4 rounded-lg border-none focus:border-[#5586f8] focus:ring-[#5586f8] bg-[#EDEDED] " />
+                        className="w-full h-[2.5rem] px-4 rounded-lg border-none focus:border-[#5586f8] focus:ring-[#5586f8] bg-[#EDEDED] " />
                 </div>
                 <div>
                     <button

@@ -30,6 +30,7 @@ const Login = () => {
             .then(function (resp) {
                 console.log(resp.headers.get("Authorization"));
                 localStorage.setItem("token", resp.headers.get("Authorization"));
+                localStorage.setItem("username", loginId.current.value);
                 console.log("성공")
                 setIsLoggedIn(true);
                 navigate("/nanoomlist");
