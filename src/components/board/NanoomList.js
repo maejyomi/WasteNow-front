@@ -1,7 +1,62 @@
+import axios from "axios";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom"
+
 
 const NanoomList = () => {
     const name = localStorage.getItem("username");
+
+    // 게시글 리스트
+    const [data, setData] = useState([]);
+    const [list, setList] = useState();
+
+    const testData = [
+        {
+            post_id: 1,
+            tag: "나눔중",
+            name: "소파",
+            cate: "가구류",
+            username: "maejyomi",
+            title: "test",
+            content: "test",
+            count: 0,
+            create_date: "2023-11-23"
+        }
+    ]
+
+    // 게시물 리스트 받아오기
+    useEffect(() => {
+        const url = "http://10.125.121.214:8080/api/user/nowList";
+       
+        axios.get(url)
+            .then(resp => {
+                console.log(resp.data);
+                setData(resp.data.content);
+            })
+            .catch(err => {
+                console.log(err);
+            })
+    }, [])
+
+  
+
+    useEffect(() => {
+        //console.log(data);
+        
+        setList(data.map((item) => {
+            return (
+                <tr className="" key={item.postId}>
+                    <td>{item.postId}</td>
+                    <td>{item.tag}</td>
+                    <td><Link to={`/nanoomdetail/${item.postId}`}>{item.title}</Link></td>
+                    <td>{item.username}</td>
+                    <td>{item.createDate.slice(0,10)}</td>
+                    <td>{item.count}</td>
+                </tr>
+            );
+        }))
+
+    }, [data])
 
     return (
         <div className="grow px-[8rem] bg-gradient-to-b from-[#83a8ff] to-[#ffffff]">
@@ -20,7 +75,7 @@ const NanoomList = () => {
                 </div>
                 <div className="mt-[2rem] h-full">
                     <table className="table-auto w-full">
-                        <thead className="border-b-4 text-lg">
+                        <thead className="border-b-4 text-lg text-left">
                             <tr>
                                 <th className="p-2">번호</th>
                                 <th>상태</th>
@@ -31,20 +86,13 @@ const NanoomList = () => {
                             </tr>
                         </thead>
                         <tbody>
-                            <tr className="text-center">
-                                <td>1</td>
-                                <td>나눔중</td>
-                                <td><Link to='/nanoomdetail'>책상 무료 나눔합니다</Link></td>
-                                <td>maejyomi</td>
-                                <td>2023.11.21</td>
-                                <td>10</td>
-                            </tr>
+                            {list}
                         </tbody>
                     </table>
                 </div>
-                <hr className="border-2"/>
+                <hr className="border-2" />
                 <div className="flex justify-end ">
-                    <div className=""><Link to='/nanoompost'>새 글 작성</Link></div>
+                    <div className=""><Link to='/nanoompost'>글쓰기</Link></div>
                 </div>
             </div>
         </div>
