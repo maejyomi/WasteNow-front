@@ -7,8 +7,9 @@ const Nav = () => {
 
   const [isLoggedIn, setIsLoggedIn] = useRecoilState(LoginStateAtom);
 
-  const testClick = () => {
+  const logoutBtn = () => {
     localStorage.removeItem("token");
+    localStorage.removeItem("username");
     setIsLoggedIn(false)
   }
 
@@ -33,7 +34,7 @@ const Nav = () => {
         <li>마이페이지</li>
         {
           isLoggedIn
-          ?<li className="hover:text-[#83a8ff] hover:font-extrabold hover:text-xl transition-all" onClick={testClick}><Link to='/'>로그아웃</Link></li> 
+          ?<li className="hover:text-[#83a8ff] hover:font-extrabold hover:text-xl transition-all" onClick={logoutBtn}><Link to='/'>로그아웃</Link></li> 
           : <li className="hover:text-[#83a8ff] hover:font-extrabold hover:text-xl transition-all"><Link to='/login'>로그인</Link></li>
         }
 
