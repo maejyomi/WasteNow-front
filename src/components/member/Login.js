@@ -43,28 +43,7 @@ const Login = () => {
 
     }
 
-    // 테스트 코드
-    const handlePostTest = () => {
-        console.log("클릭");
-
-        const token = localStorage.getItem("token");
-        fetch("http://10.125.121.214:8080/api/search/test", {
-            method: 'POST',
-            headers: {
-                "Authorization": token
-            },
-            body: JSON.stringify({
-                //보낼 데이터 json
-                "test": "test"
-            })
-        })
-            .then(res => console.log(res))
-            .then(res => res.json())
-            .then(data => console.log(data))
-            .catch(err => console.log(err));
-
-    }
-
+    
     return (
         <div className="grow bg-gradient-to-b from-[#97b4fd] to-[#f4e8ff] flex flex-col">
             <div className="flex flex-col bg-white w-[30rem] m-auto h-[35rem] rounded-3xl shadow-lg p-5">

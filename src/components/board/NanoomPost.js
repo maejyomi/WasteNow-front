@@ -93,6 +93,8 @@ const NanoomPost = () => {
       alert("사진을 선택해주세요");
       return;
     }
+
+    // 댓글 관련 정보
     const postData = {
       name: selName,
       cate: cate,
@@ -104,7 +106,7 @@ const NanoomPost = () => {
       count: 0,
     }
 
-    console.log(postData)
+    // console.log(postData);
 
     // 모든 항목이 있을 때 fetch하기
     axios.post("http://10.125.121.214:8080/api/user/nowWrite",postData)
@@ -129,7 +131,7 @@ const NanoomPost = () => {
           <CustomSelect optionItem={wasteName} handleChange={wasteNameChange}/>
           <div className='flex items-center col-span-2 lg:col-span-5 h-[3rem] mt-[0.5rem]'>
             <input type='text' ref={title} placeholder='제목을 입력해주세요'
-              className='w-full h-full col border-none bg-[#ededed] rounded-lg' />
+              className='w-full h-full border-none bg-[#ededed] rounded-lg' />
           </div>
           <div className='col-span-1 h-[3rem] mt-[0.5rem]'>
             <button onClick={postClick} className='bg-now-blue hover:bg-[#2969fd] rounded-lg w-full h-full text-white'>등록</button>

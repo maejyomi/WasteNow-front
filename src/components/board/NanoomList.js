@@ -46,7 +46,7 @@ const NanoomList = () => {
         setList(data.map((item) => {
             return (
                 <tr className="" key={item.postId}>
-                    <td>{item.postId}</td>
+                    <td className="pl-5">{item.postId}</td>
                     <td>{item.tag}</td>
                     <td><Link to={`/nanoomdetail/${item.postId}`}>{item.title}</Link></td>
                     <td>{item.username}</td>

@@ -23,7 +23,7 @@ function App() {
             <Route path='/signup' element={<SignUp />}></Route>
             <Route path='/nanoomlist' element={<NanoomList />}></Route>
             <Route path='/nanoompost' element={<NanoomPost />}></Route>
-            <Route path='/nanoomdetail' element={<NanoomDetail />}></Route>
+            <Route path='/nanoomdetail/:postId' element={<NanoomDetail />}></Route>
           </Routes>
         </RecoilRoot>
       </main>
