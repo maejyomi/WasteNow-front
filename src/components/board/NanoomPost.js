@@ -122,7 +122,7 @@ const NanoomPost = () => {
 
   return (
     <div className="grow px-[8rem] bg-gradient-to-b from-[#83a8ff] to-[#ffffff]">
-      <div className="flex flex-col h-[85%] w-full mt-[4rem]  bg-white shadow-lg rounded-lg px-[3rem] py-[2rem]">
+      <div className="max-w-[800px] m-auto flex flex-col h-[85%] w-full mt-[4rem]  bg-white shadow-lg rounded-lg px-[3rem] py-[2rem]">
         <h1 className='text-center font-bold text-2xl'>글쓰기</h1>
 
         <div className='grid grid-cols-3 lg:grid-cols-6 gap-2 mt-[1.5rem]'>

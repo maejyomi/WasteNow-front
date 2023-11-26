@@ -1,14 +1,14 @@
 import axios from "axios";
-import { useEffect, useRef, useState } from "react";
-import { useParams } from "react-router-dom"
+import { useEffect, useState } from "react";
+import { Link, useParams } from "react-router-dom"
+import Comment from "./Comment.js";
+
 
 const NanoomDetail = () => {
     const postId = useParams().postId;
     const username = localStorage.getItem("username");
 
     // console.log(postId);
-
-    const comm = useRef();
 
     const [detailData, setDetailData] = useState([]);
     const [detailTag, setDetailTag] = useState();
@@ -19,6 +19,7 @@ const NanoomDetail = () => {
             name: "소파",
             cate: "가구류",
             username: "maejyomi",
+            content: "1년 사용한 소파 무료나눔 합니다! 상태 좋습니다!! 영도구 ## 아파트 앞에서 가져가시면 됩니다!",
             title: "소파 무료나눔 합니다",
             image: "이미지",
             count: 0,
@@ -27,35 +28,13 @@ const NanoomDetail = () => {
         }
     ]
 
-    const commSubmit = () => {
-        if (comm.current.value === "") {
-            alert("내용을 입력해주세요");
-            comm.current.focus();
-            return;
-        }
-        // console.log(comm.current.value);
-
-        const commPostData = {
-            postId: postId,
-            username: username,
-            commContent: comm.current.value
-        }
-
-        const url = "http://10.125.121.214:8080/api/user/commWrite";
-
-        axios.post(url, commPostData)
-            .then(resp => {
-                console.log("성공");
-            })
-            .catch(err => {
-                console.log("댓글 등록 실패");
-            })
-    }
+    
 
     // 제일 처음 데이터를 받아오는 부분
     useEffect(() => {
         const url = `http://10.125.121.214:8080/api/user/nowBoard?postId=${postId}`;
 
+        /*
         axios.get(url)
             .then(resp => {
                 console.log(resp.data);
@@ -65,30 +44,43 @@ const NanoomDetail = () => {
                 console.log(err);
             })
 
+        */
 
         // 테스트용
-        //setDetailData(testData);
+        setDetailData(testData);
     }, [])
 
     useEffect(() => {
         // console.log(detailData);
         setDetailTag(detailData.map((item) => {
-            console.log(detailData[0]["username"])
+            console.log(detailData[0]["username"]);
             return (
                 <div className='grow' key={item.postId}>
-                    <h1 className="text-center font-bold text-xl mb-2 border-b-2 py-[1rem]">{item.title}</h1>
+                    <div className="flex justify-between border-b-2 items-center">
+                        <h1 className="font-bold text-xl mb-2">{item.title}</h1>
+                        <div className="flex gap-4 mb-2 text-black">
+                            <p className="border-4 border-[#baffb5] rounded-full p-1 px-2 font-bold">#{item.cate}</p>
+                            <p className="border-4 border-[#fafa98] rounded-full p-1 px-2 font-bold">#{item.name}</p>
+                            {
+                                item.tag === "나눔중"
+                                ? <p className="border-4 border-[#bbf9ff] rounded-full p-1 px-2 font-bold">#{item.tag}</p>
+                                : <p className="border-4 border-[#bbf9ff] bg-[#bbf9ff] rounded-full p-1 px-2 font-bold">#{item.tag}</p>
+                            }
+                        </div>
+                    </div>
                     <div className="flex h-[90%] gap-4">
                         <div className="grow w-[30%]">
                             <img src={item.image} className="max-h-[240px] w-[100%] object-cover" />
                         </div>
 
-                        <div className="grow w-[70%]">
-                            <p>{item.content}</p>
-                            <p>{item.cate}</p>
-                            <p>{item.name}</p>
-                            <p>{item.tag}</p>
-                            <p>{item.username}</p>
-                            <p>{item.createDate}</p>
+                        <div className="grow flex flex-col w-[70%]">
+                            <div className="flex justify-between text-sm my-2">
+                                <p>{item.username}</p>
+                                <p>{item.createDate.slice(0,10)}</p>
+                            </div>
+                            <div className="">
+                                <p>{item.content}</p>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -98,19 +90,15 @@ const NanoomDetail = () => {
 
     return (
         <div className="grow px-[8rem] bg-gradient-to-b from-[#83a8ff] to-[#ffffff]">
-            <div className="flex flex-col h-[50%] w-full mt-[4rem] bg-white shadow-lg rounded-lg px-[3rem] pb-[2rem]">
+            <div className="flex flex-col h-[50%] w-full max-w-[800px] m-auto mt-[4rem] bg-white shadow-lg rounded-lg px-[3rem] py-[2rem]">
                 {detailTag}
-            </div>
-            <div className="flex flex-col w-full h-[35%] mt-[1rem] bg-white shadow-lg rounded-lg px-[3rem] py-[2rem]">
-                <div className='grow flex flex-col'>
-                    <div className="grow">
-                        댓글
-                    </div>
-                    <div className="items-end">
-                        <input type="text" ref={comm} placeholder="댓글" className="border-none bg-[#ededed] rounded-lg w-[80%] mr-2" />
-                        <button onClick={commSubmit} className="text-white bg-now-blue h-full rounded-lg w-[5rem]">등록</button>
-                    </div>
+                <div className="flex justify-end">
+                    수정 삭제 버튼 부분
                 </div>
+            </div>
+            <Comment postId={postId} />
+            <div  className="flex m-auto max-w-[800px] justify-center my-[1rem]">
+               <Link to='/nanoomlist'><p>목록으로</p></Link>
             </div>
         </div>
     )
