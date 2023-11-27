@@ -50,6 +50,11 @@
 - 상세보기 페이지 디자인
 - 댓글 컴포넌트 분리
 
+#### 23.11.27 : 게시물 입력 수정, 댓글 추가
+
+- 게시물 입력시 시군구명, 사이즈도 입력받도록 수정
+- 댓글 추가 기능 구현
+
 ## Ref.
 - .gitignore
 - [pixabay](https://pixabay.com/images/search/white%20male%203d%20model/)
