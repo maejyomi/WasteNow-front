@@ -142,7 +142,8 @@ const NanoomPost = () => {
     // console.log(postData);
 
     // 모든 항목이 있을 때 fetch하기
-    axios.post("http://10.125.121.214:8080/api/user/nowWrite",postData)
+    if(window.confirm("카테고리와 이미지는 수정할 수 없습니다.\n게시글을 등록하시겠습니까?")){
+      axios.post("http://10.125.121.214:8080/api/user/nowWrite",postData)
                 .then((resp)=>{
                     navigate("/nanoomlist");
                 })
@@ -150,7 +151,8 @@ const NanoomPost = () => {
                     console.log(err);
                     alert("게시글 등록 실패");
                 });
-
+    }
+    
   }
 
   return (
