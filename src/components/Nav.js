@@ -1,16 +1,18 @@
 import { useEffect } from "react";
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { useRecoilState } from "recoil";
 import { LoginStateAtom } from "./member/LoginStateAtom";
 
 const Nav = () => {
 
   const [isLoggedIn, setIsLoggedIn] = useRecoilState(LoginStateAtom);
+  const navigate = useNavigate();
 
   const logoutBtn = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("username");
-    setIsLoggedIn(false)
+    setIsLoggedIn(false);
+    navigate("/");
   }
 
   useEffect(()=>{
