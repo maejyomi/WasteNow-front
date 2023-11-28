@@ -1,5 +1,7 @@
 import axios from "axios";
 import { useEffect, useRef, useState } from "react";
+import { MdDelete } from "react-icons/md";
+import { HiMiniPencilSquare } from "react-icons/hi2";
 
 const Comment = ({ postId }) => {
   const username = localStorage.getItem("username");
@@ -7,46 +9,7 @@ const Comment = ({ postId }) => {
   const [commData, setCommData] = useState();
   const [commTag, setCommTag] = useState();
 
-  useEffect(() => {
-    const url = `http://10.125.121.214:8080/api/user/nowBoard?postId=${postId}`;
-
-    axios.get(url)
-      .then(resp => {
-        setCommData(resp.data.comment);
-      })
-      .catch(err => {
-        console.log(err);
-      })
-
-
-  }, [])
-
-  useEffect(() => {
-    if (!commData) return;
-
-    console.log(commData);
-    setCommTag(commData.map((item) => {
-      return (
-        <div className="flex justify-between" key={item.commentId}>
-          <div className="flex gap-2">
-            <p>[ {item.username} ]</p>
-            <p>{item.commContent}</p>
-          </div>
-          {
-            username === item.username
-            ? <div>
-                수정 삭제
-              </div>
-            : ""
-          }
-        </div>
-      )
-    }))
-
-  }, [commData])
-
-
-  // 댓글 작성 등록
+  // 댓글 작성
   const commSubmit = () => {
     if (comm.current.value === "") {
       alert("내용을 입력해주세요");
@@ -65,8 +28,10 @@ const Comment = ({ postId }) => {
     axios
       .post(url, commPostData)
       .then((resp) => {
-        console.log("성공");
-        setCommData([...commData, commPostData]);
+        console.log(resp.data);
+
+        // response로 받기
+        setCommData(resp.data);
         comm.current.value = "";
 
       })
@@ -76,6 +41,71 @@ const Comment = ({ postId }) => {
 
 
   };
+
+  // 댓글 삭제
+  const handleCommDelete = (commentId) => {
+    // console.log(commentId);
+    if (window.confirm("댓글을 삭제하시겠습니까?")) {
+      const url = `http://10.125.121.214:8080/api/user/delComment?commentId=${commentId}&postId=${postId}`;
+      axios.delete(url)
+        .then(resp => {
+          alert("삭제되었습니다");
+          // console.log(resp.data);
+          setCommData(resp.data);
+        })
+        .catch((err) => console.log(err))
+
+    } 
+  }
+
+  useEffect(() => {
+    const url = `http://10.125.121.214:8080/api/user/nowBoard?postId=${postId}`;
+    // const url = `http://10.125.121.214:8080/api/user/nowComment?postId=${postId}`;
+
+    axios.get(url)
+      .then(resp => {
+        setCommData(resp.data.comment);
+      })
+      .catch(err => {
+        console.log(err);
+      })
+
+
+  }, [])
+
+  useEffect(() => {
+    if (!commData) return;
+
+    setCommTag(commData.map((item) => {
+      // console.log(item.commentId);
+      return (
+        <div className="flex justify-between" key={item.commentId}>
+          <div className="flex gap-2">
+            <p>[ {item.username} ]</p>
+            <p>{item.commContent}</p>
+          </div>
+          {
+            username === item.username
+              ? <div className="flex gap-1">
+                <div>
+                  <button>
+                    <HiMiniPencilSquare className="text-xl text-gray-400 hover:text-green-600" />
+                  </button>
+                </div>
+                <div>
+                  <button onClick={() => handleCommDelete(item.commentId)}>
+                    <MdDelete className="text-xl text-gray-400 hover:text-red-500" />
+                  </button>
+                </div>
+              </div>
+              : ""
+          }
+        </div>
+      )
+    }))
+
+  }, [commData])
+
 
   return (
     <div className="flex flex-col w-full max-w-[800px] m-auto  mt-[1rem] bg-white shadow-lg rounded-lg px-[3rem] py-[2rem]">
@@ -90,7 +120,7 @@ const Comment = ({ postId }) => {
           />
           <button
             onClick={commSubmit}
-            className="text-white bg-now-blue rounded-r-lg h-[40px] w-[15%]"
+            className="text-white bg-now-blue hover:bg-[#2969fd] rounded-r-lg h-[40px] w-[15%]"
           >
             등록
           </button>
