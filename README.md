@@ -55,6 +55,12 @@
 - 게시물 입력시 시군구명, 사이즈도 입력받도록 수정
 - 댓글 추가 기능 구현
 
+#### 23.11.28 : 게시물, 댓글 삭제 추가
+
+- 로그인 엔터키 이벤트 처리
+- 게시물, 댓글 삭제 기능 구현
+- 이미지 사이즈 고정 처리
+
 ## Ref.
 - .gitignore
 - [pixabay](https://pixabay.com/images/search/white%20male%203d%20model/)
