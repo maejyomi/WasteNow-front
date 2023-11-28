@@ -1,12 +1,15 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { Link, useParams } from "react-router-dom"
+import { Link, useNavigate, useParams } from "react-router-dom"
 import Comment from "./Comment.js";
-
+import { MdDelete } from "react-icons/md";
+import { HiMiniPencilSquare } from "react-icons/hi2";
 
 const NanoomDetail = () => {
     const postId = useParams().postId;
     const username = localStorage.getItem("username");
+
+    const navigate = useNavigate();
 
     // console.log(username);
     // console.log(postId);
@@ -31,12 +34,24 @@ const NanoomDetail = () => {
         }
     ]
 
+    // 게시글 삭제
+    const handleDelete = () => {
+        console.log(postId);
+        if (window.confirm("삭제된 글은 복구할 수 없습니다.\n삭제하시겠습니까?")) {
+            const url = `http://10.125.121.214:8080/api/user/delBoard?postId=${postId}`;
+            axios.delete(url)
+                .then(resp => {
+                    alert("삭제되었습니다.");
+                    navigate("/nanoomlist");
+                })
+                .catch(err => console.log(err));
 
+        } 
+    }
 
     // 제일 처음 데이터를 받아오는 부분
     useEffect(() => {
         const url = `http://10.125.121.214:8080/api/user/nowBoard?postId=${postId}`;
-
 
         axios.get(url)
             .then(resp => {
@@ -72,8 +87,8 @@ const NanoomDetail = () => {
                         </div>
                     </div>
                     <div className="flex h-[80%] gap-4">
-                        <div className="grow w-[30%]">
-                            <img src={item.image} className="max-h-[240px] w-[100%] object-cover" />
+                        <div className="grow w-[50%] mt-2">
+                            <img src={item.image} className="h-[100%] w-[100%] object-cover" />
                         </div>
 
                         <div className="grow flex flex-col w-[70%]">
@@ -90,8 +105,19 @@ const NanoomDetail = () => {
                         username === detailData[0]["username"]
                             ?
                             <div className="flex justify-end border-t-2 mt-2">
-                                <div className="mt-2">
-                                    수정 삭제
+                                <div className="flex items-center gap-1 mt-2">
+                                    <div>
+                                        <Link to={`/nanoomEdit/${item.postId}`}>
+                                            <button>
+                                                <HiMiniPencilSquare className="text-xl text-gray-400 hover:text-green-600" />
+                                            </button>
+                                        </Link>
+                                    </div>
+                                    <div>
+                                        <button onClick={handleDelete}>
+                                            <MdDelete className="text-xl text-gray-400 hover:text-red-500" />
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
                             : ""
