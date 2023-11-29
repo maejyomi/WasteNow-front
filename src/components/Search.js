@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import CustomSelect from "./CustomSelect";
-
+import axios from "axios";
 
 const Search = () => {
     const selSido = ["강서구", "금정구", "남구", "동래구", "부산진구", "북구", "사상구", "서구", "수영구", "연제구", "영도구", "해운대구"];
@@ -10,6 +10,7 @@ const Search = () => {
     const [cate, setCate] = useState();
     const keyword = useRef();
     const [searchData, setSearchData] = useState();
+    const [optionTags, setOptionTags] = useState([]);
     const [tags, setTags] = useState();
 
 
@@ -32,6 +33,7 @@ const Search = () => {
 
     const cateChange = (e) => {
         setCate(e.target.value);
+
     }
 
     const submitBtn = (e) => {
@@ -51,6 +53,30 @@ const Search = () => {
         // setSearchData(testData); // 테스트 코드
 
     }
+
+    // 엔터키 입력 처리
+    const enterKeyDown = (e) => {
+        if(e.key == "Enter"){
+            submitBtn(e);
+        }
+    }
+
+    useEffect(()=>{
+        if(!sido || !cate) return;
+
+        axios.get(`http://10.125.121.214:8080/api/wastename?sido=${sido}&cate=${cate}`)
+            .then(resp => {
+                console.log("폐기물명: ",resp.data);
+                setOptionTags(resp.data.map((item)=>{
+                    return (
+                        <option>{item}</option>
+                    )
+                }))
+                
+            })
+            .catch(err => console.log(err));
+        
+    },[sido, cate])
 
     useEffect(() => {
         
@@ -99,8 +125,13 @@ const Search = () => {
                 <div className="col-span-2">
                     <input type="text"
                         ref={keyword}
+                        list="list"
                         placeholder="키워드를 입력해주세요"
+                        onKeyDown={enterKeyDown}
                         className="w-full h-[2.5rem] px-4 rounded-lg border-none focus:border-[#5586f8] focus:ring-[#5586f8] bg-[#EDEDED] " />
+                    <datalist id="list">
+                        {optionTags}
+                    </datalist>
                 </div>
                 <div>
                     <button
