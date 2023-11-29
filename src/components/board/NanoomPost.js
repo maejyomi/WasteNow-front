@@ -127,7 +127,7 @@ const NanoomPost = () => {
 
     // 댓글 관련 정보
     const postData = {
-      sido: selSido,
+      sido: sido,
       cate: cate,
       name: selName,
       size: selSize,
@@ -136,14 +136,17 @@ const NanoomPost = () => {
       content: content.current.value,
       image: imgUrl,
       tag: "나눔중",
-      count: 0,
     }
 
-    // console.log(postData);
+    console.log(postData);
 
     // 모든 항목이 있을 때 fetch하기
     if(window.confirm("카테고리와 이미지는 수정할 수 없습니다.\n게시글을 등록하시겠습니까?")){
-      axios.post("http://10.125.121.214:8080/api/user/nowWrite",postData)
+      axios.post("http://10.125.121.214:8080/api/user/nowWrite",postData, {
+        headers:{
+          Authorization : localStorage.getItem("token")
+        }
+      })
                 .then((resp)=>{
                     navigate("/nanoomlist");
                 })
