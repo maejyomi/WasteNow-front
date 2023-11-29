@@ -36,27 +36,35 @@ const NanoomDetail = () => {
 
     // 게시글 삭제
     const handleDelete = () => {
-        console.log(postId);
+        // console.log(postId); // 아이디 확인
         if (window.confirm("삭제된 글은 복구할 수 없습니다.\n삭제하시겠습니까?")) {
             const url = `http://10.125.121.214:8080/api/user/delBoard?postId=${postId}`;
-            axios.delete(url)
+            axios.delete(url, {
+                headers: {
+                    Authorization: localStorage.getItem("token")
+                }
+            })
                 .then(resp => {
                     alert("삭제되었습니다.");
                     navigate("/nanoomlist");
                 })
                 .catch(err => console.log(err));
 
-        } 
+        }
     }
 
     // 제일 처음 데이터를 받아오는 부분
     useEffect(() => {
         const url = `http://10.125.121.214:8080/api/user/nowBoard?postId=${postId}`;
 
-        axios.get(url)
+        axios.get(url, {
+            headers: {
+                Authorization: localStorage.getItem("token")
+            }
+        })
             .then(resp => {
-                //console.log(resp.data.board);
-                setDetailData(resp.data.board);
+                console.log("게시글 상세내용:", resp.data);
+                setDetailData(resp.data);
             })
             .catch(err => {
                 console.log(err);
@@ -71,20 +79,32 @@ const NanoomDetail = () => {
     useEffect(() => {
         // console.log(detailData);
         setDetailTag(detailData.map((item) => {
-            console.log(detailData[0]["username"]);
+            // console.log(detailData[0]["username"]);
             return (
                 <div className='grow' key={item.postId}>
                     <div className="flex justify-between border-b-2 items-center">
                         <h1 className="font-bold text-xl mb-2">{item.title}</h1>
-                        <div className="flex gap-4 mb-2 text-black">
-                            <p className="border-4 border-[#baffb5] rounded-full p-1 px-2 font-bold">#{item.cate}</p>
-                            <p className="border-4 border-[#fafa98] rounded-full p-1 px-2 font-bold">#{item.name}</p>
-                            {
-                                item.tag === "나눔중"
-                                    ? <p className="border-4 border-[#bbf9ff] rounded-full p-1 px-2 font-bold">#{item.tag}</p>
-                                    : <p className="border-4 border-[#bbf9ff] bg-[#bbf9ff] rounded-full p-1 px-2 font-bold">#{item.tag}</p>
-                            }
-                        </div>
+                        {
+                            username === detailData[0]["member"]
+                                ?
+                                <div>
+                                    <div className="flex items-center gap-1 mt-2">
+                                        <div>
+                                            <Link to={`/nanoomEdit/${item.postId}`}>
+                                                <button>
+                                                    <HiMiniPencilSquare className="text-xl text-gray-400 hover:text-green-600" />
+                                                </button>
+                                            </Link>
+                                        </div>
+                                        <div>
+                                            <button onClick={handleDelete}>
+                                                <MdDelete className="text-xl text-gray-400 hover:text-red-500" />
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                : ""
+                        }
                     </div>
                     <div className="flex h-[80%] gap-4">
                         <div className="grow w-[50%] mt-2">
@@ -93,7 +113,7 @@ const NanoomDetail = () => {
 
                         <div className="grow flex flex-col w-[70%]">
                             <div className="flex justify-between text-sm my-2">
-                                <p>{item.username}</p>
+                                <p>{item.member}</p>
                                 <p>{item.createDate.slice(0, 10)}</p>
                             </div>
                             <div className="">
@@ -101,27 +121,18 @@ const NanoomDetail = () => {
                             </div>
                         </div>
                     </div>
-                    {
-                        username === detailData[0]["username"]
-                            ?
-                            <div className="flex justify-end border-t-2 mt-2">
-                                <div className="flex items-center gap-1 mt-2">
-                                    <div>
-                                        <Link to={`/nanoomEdit/${item.postId}`}>
-                                            <button>
-                                                <HiMiniPencilSquare className="text-xl text-gray-400 hover:text-green-600" />
-                                            </button>
-                                        </Link>
-                                    </div>
-                                    <div>
-                                        <button onClick={handleDelete}>
-                                            <MdDelete className="text-xl text-gray-400 hover:text-red-500" />
-                                        </button>
-                                    </div>
-                                </div>
-                            </div>
-                            : ""
-                    }
+                    <div className="flex items-center justify-end my-2 text-sm text-black">
+                        <div className="flex gap-2">
+                            <p className="border-4 border-[#baffb5] rounded-full p-1 px-2 font-bold">#{item.bigTrash.name}</p>
+                            <p className="border-4 border-[#fafa98] rounded-full p-1 px-2 font-bold">#{item.bigTrash.size}</p>
+                            {
+                                item.tag === "나눔중"
+                                    ? <p className="border-4 border-[#bbf9ff] rounded-full p-1 px-2 font-bold">#{item.tag}</p>
+                                    : <p className="border-4 border-[#bbf9ff] bg-[#bbf9ff] rounded-full p-1 px-2 font-bold">#{item.tag}</p>
+                            }
+                        </div>
+                    </div>
+
                 </div>
             )
         }))

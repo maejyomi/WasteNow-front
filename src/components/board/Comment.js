@@ -26,7 +26,11 @@ const Comment = ({ postId }) => {
     const url = "http://10.125.121.214:8080/api/user/commWrite";
 
     axios
-      .post(url, commPostData)
+      .post(url, commPostData, {
+        headers:{
+          Authorization : localStorage.getItem("token")
+        }
+      })
       .then((resp) => {
         console.log(resp.data);
 
@@ -47,7 +51,11 @@ const Comment = ({ postId }) => {
     // console.log(commentId);
     if (window.confirm("댓글을 삭제하시겠습니까?")) {
       const url = `http://10.125.121.214:8080/api/user/delComment?commentId=${commentId}&postId=${postId}`;
-      axios.delete(url)
+      axios.delete(url, {
+        headers:{
+          Authorization : localStorage.getItem("token")
+        }
+      })
         .then(resp => {
           alert("삭제되었습니다");
           // console.log(resp.data);
@@ -59,12 +67,17 @@ const Comment = ({ postId }) => {
   }
 
   useEffect(() => {
-    const url = `http://10.125.121.214:8080/api/user/nowBoard?postId=${postId}`;
-    // const url = `http://10.125.121.214:8080/api/user/nowComment?postId=${postId}`;
+    // const url = `http://10.125.121.214:8080/api/user/nowBoard?postId=${postId}`;
+    const url = `http://10.125.121.214:8080/api/user/nowComment?postId=${postId}`;
 
-    axios.get(url)
+    axios.get(url, {
+      headers:{
+        Authorization : localStorage.getItem("token")
+      }
+    })
       .then(resp => {
-        setCommData(resp.data.comment);
+        console.log("댓글 데이터 : ",resp.data)
+        setCommData(resp.data);
       })
       .catch(err => {
         console.log(err);
@@ -81,11 +94,11 @@ const Comment = ({ postId }) => {
       return (
         <div className="flex justify-between" key={item.commentId}>
           <div className="flex gap-2">
-            <p>[ {item.username} ]</p>
+            <p>[ {item.member} ]</p>
             <p>{item.commContent}</p>
           </div>
           {
-            username === item.username
+            username === item.member
               ? <div className="flex gap-1">
                 <div>
                   <button>

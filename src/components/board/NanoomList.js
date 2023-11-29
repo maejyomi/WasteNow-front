@@ -28,9 +28,13 @@ const NanoomList = () => {
     useEffect(() => {
         const url = "http://10.125.121.214:8080/api/user/nowList";
        
-        axios.get(url)
+        axios.get(url, {
+            headers:{
+              Authorization : localStorage.getItem("token")
+            }
+          })
             .then(resp => {
-                console.log(resp.data);
+                console.log("게시글 리스트: ",resp.data.content);
                 setData(resp.data.content);
             })
             .catch(err => {
@@ -43,13 +47,13 @@ const NanoomList = () => {
     useEffect(() => {
         //console.log(data);
         
-        setList(data.map((item) => {
+        setList(data.map((item, idx) => {
             return (
                 <tr className="" key={item.postId}>
-                    <td className="pl-5">{item.postId}</td>
+                    <td className="pl-5">{idx+1}</td>
                     <td>{item.tag}</td>
                     <td><Link to={`/nanoomdetail/${item.postId}`}>{item.title}</Link></td>
-                    <td>{item.username}</td>
+                    <td>{item.member}</td>
                     <td>{item.createDate.slice(0,10)}</td>
                     <td>{item.count}</td>
                 </tr>
@@ -61,7 +65,7 @@ const NanoomList = () => {
     return (
         <div className="grow px-[8rem] bg-gradient-to-b from-[#83a8ff] to-[#ffffff]">
             <h1 className="flex justify-end mt-[1rem] text-lg text-white font-bold tracking-wide"><span className="font-bold text-[#F9F871]">{name}</span>님 환영합니다.</h1>
-            <div className="flex flex-col h-[85%] w-full mt-[1rem]  bg-white shadow-lg rounded-lg px-[3rem] py-[2rem]">
+            <div className="flex flex-col h-[85%] mt-[1rem]  bg-white shadow-lg rounded-lg px-[3rem] py-[2rem]">
                 <div className="flex items-center justify-between">
                     <div>
                         <h1 className='text-center font-bold text-2xl'>나눔 게시판</h1>
