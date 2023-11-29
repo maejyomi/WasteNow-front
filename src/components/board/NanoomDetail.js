@@ -116,8 +116,11 @@ const NanoomDetail = () => {
                                 <p>{item.member}</p>
                                 <p>{item.createDate.slice(0, 10)}</p>
                             </div>
-                            <div className="">
-                                <p>{item.content}</p>
+                            <div className="w-full h-full">
+                                <textarea   value={item.content}
+                                            readOnly
+                                            className="w-[100%] h-[100%] resize-none border-none focus:ring-0">
+                                </textarea>
                             </div>
                         </div>
                     </div>
