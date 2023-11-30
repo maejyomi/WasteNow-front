@@ -85,20 +85,20 @@ const NanoomDetail = () => {
                     <div className="flex justify-between border-b-2 items-center">
                         <h1 className="font-bold text-xl mb-2">{item.title}</h1>
                         {
-                            username === detailData[0]["member"]
+                            username === detailData[0]["member"].username
                                 ?
                                 <div>
                                     <div className="flex items-center gap-1 mt-2">
                                         <div>
                                             <Link to={`/nanoomEdit/${item.postId}`}>
                                                 <button>
-                                                    <HiMiniPencilSquare className="text-xl text-gray-400 hover:text-green-600" />
+                                                    <HiMiniPencilSquare className="text-2xl text-gray-400 hover:text-green-600" />
                                                 </button>
                                             </Link>
                                         </div>
                                         <div>
                                             <button onClick={handleDelete}>
-                                                <MdDelete className="text-xl text-gray-400 hover:text-red-500" />
+                                                <MdDelete className="text-2xl text-gray-400 hover:text-red-500" />
                                             </button>
                                         </div>
                                     </div>
@@ -113,7 +113,7 @@ const NanoomDetail = () => {
 
                         <div className="grow flex flex-col w-[70%]">
                             <div className="flex justify-between text-sm my-2">
-                                <p>{item.member}</p>
+                                <p>{item.member.username}</p>
                                 <p>{item.createDate.slice(0, 10)}</p>
                             </div>
                             <div className="w-full h-full">
@@ -131,7 +131,7 @@ const NanoomDetail = () => {
                             {
                                 item.tag === "나눔중"
                                     ? <p className="border-4 border-[#bbf9ff] rounded-full p-1 px-2 font-bold">#{item.tag}</p>
-                                    : <p className="border-4 border-[#bbf9ff] bg-[#bbf9ff] rounded-full p-1 px-2 font-bold">#{item.tag}</p>
+                                    : <p className="border-4 border-[#d6d6d6] bg-[#d6d6d6] rounded-full p-1 px-2 font-bold">#{item.tag}</p>
                             }
                         </div>
                     </div>
