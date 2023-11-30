@@ -1,7 +1,6 @@
 import axios from "axios";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom"
-
 
 const NanoomList = () => {
     const name = localStorage.getItem("username");
@@ -9,6 +8,8 @@ const NanoomList = () => {
     // 게시글 리스트
     const [data, setData] = useState([]);
     const [list, setList] = useState();
+
+    const searchKeyword = useRef();
 
     const testData = [
         {
@@ -24,6 +25,29 @@ const NanoomList = () => {
         }
     ]
 
+    const listSearch = () => {
+        let keyword;
+
+        searchKeyword.current.value === ""
+        ? keyword = "전체"
+        : keyword = searchKeyword.current.value;
+        
+        const url = `http://10.125.121.214:8080/api/user/nowListSearch?keyword=${keyword}`;
+        console.log(url);
+
+        axios.get(url, {
+            headers:{
+              Authorization : localStorage.getItem("token")
+            }
+          })
+        .then(resp => {
+            console.log(resp.data);
+            setData(resp.data);
+        })
+        .catch(err => console.log(err));
+
+    }
+
     // 게시물 리스트 받아오기
     useEffect(() => {
         const url = "http://10.125.121.214:8080/api/user/nowList";
@@ -34,8 +58,8 @@ const NanoomList = () => {
             }
           })
             .then(resp => {
-                console.log("게시글 리스트: ",resp.data.content);
-                setData(resp.data.content);
+                // console.log("게시글 리스트: ",resp.data);
+                setData(resp.data);
             })
             .catch(err => {
                 console.log(err);
@@ -53,7 +77,7 @@ const NanoomList = () => {
                     <td className="pl-5">{idx+1}</td>
                     <td>{item.tag}</td>
                     <td><Link to={`/nanoomdetail/${item.postId}`}>{item.title}</Link></td>
-                    <td>{item.member}</td>
+                    <td>{item.member.username}</td>
                     <td>{item.createDate.slice(0,10)}</td>
                     <td>{item.count}</td>
                 </tr>
@@ -72,9 +96,10 @@ const NanoomList = () => {
                     </div>
                     <div className="flex items-center h-full">
                         <input type="text"
+                            ref={searchKeyword}
                             placeholder="키워드를 입력해주세요"
                             className="w-[15rem] border-none bg-[#ededed] rounded-lg" />
-                        <button className="w-[4rem] ml-4 bg-now-blue hover:bg-[#2969fd] h-full rounded-lg text-white ">검색</button>
+                        <button onClick={listSearch} className="w-[4rem] ml-4 bg-now-blue hover:bg-[#2969fd] h-full rounded-lg text-white ">검색</button>
                     </div>
                 </div>
                 <div className="mt-[2rem] h-full">
