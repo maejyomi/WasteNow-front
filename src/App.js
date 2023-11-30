@@ -9,6 +9,8 @@ import NanoomList from './components/board/NanoomList';
 import NanoomPost from './components/board/NanoomPost';
 import { RecoilRoot } from 'recoil';
 import NanoomDetail from './components/board/NanoomDetail';
+import NanoomEdit from './components/board/NanoomEdit';
+
 
 function App() {
   return (
@@ -24,6 +26,7 @@ function App() {
             <Route path='/nanoomlist' element={<NanoomList />}></Route>
             <Route path='/nanoompost' element={<NanoomPost />}></Route>
             <Route path='/nanoomdetail/:postId' element={<NanoomDetail />}></Route>
+            <Route path='/nanoomEdit/:postId' element={<NanoomEdit />}></Route>
           </Routes>
         </RecoilRoot>
       </main>
