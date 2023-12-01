@@ -21,10 +21,21 @@ const NanoomDetail = () => {
     // 테스트용 데이터
     const testData = [
         {
-            postId: 1,
-            name: "소파",
-            cate: "가구류",
-            username: "maejyomi",
+            bigTrash: {
+                bigId:1,
+                cate:"가전제품류",
+                manager:"해운대구청",
+                name:"공기청정기",
+                pay:"유료",
+                price:8000,
+                sido:"해운대구",
+                size:"높이 1m 이상",
+            },
+            member:{
+                password: "aaaa",
+                username: "maejyomi"
+            },
+            postId:2,
             content: "1년 사용한 소파 무료나눔 합니다! 영도구 ## 아파트 앞에서 가져가시면 됩니다!",
             title: "소파 무료나눔 합니다",
             image: "이미지",
@@ -117,9 +128,9 @@ const NanoomDetail = () => {
                                 <p>{item.createDate.slice(0, 10)}</p>
                             </div>
                             <div className="w-full h-full">
-                                <textarea   value={item.content}
-                                            readOnly
-                                            className="w-[100%] h-[100%] resize-none border-none focus:ring-0">
+                                <textarea value={item.content}
+                                    readOnly
+                                    className="w-[100%] h-[100%] resize-none border-none focus:ring-0">
                                 </textarea>
                             </div>
                         </div>

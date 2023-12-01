@@ -97,13 +97,15 @@ const NanoomPost = () => {
   const [imgUrl, setImgUrl] = useState();
 
   const handleImage = (e) => {
-    const file = e.target.files[0]
-    
-    const reader = new FileReader();
-    reader.onload = (e) => {
-      setImgUrl(e.target.result);
-    }
-    reader.readAsDataURL(file);
+    // const file = e.target.files[0]
+    console.log(e.target.files[0]);
+    setImgUrl(e.target.files[0]);
+
+    // const reader = new FileReader();
+    // reader.onload = (e) => {
+    //   setImgUrl(e.target.result);
+    // }
+    // reader.readAsDataURL(file);
   }
 
   useEffect(()=>{
@@ -113,7 +115,7 @@ const NanoomPost = () => {
 
   // 게시글 등록
   const postClick = () => {
-    console.log()
+    console.log(content.current.value)
     if (title.current.value === "" || content.current.value === "" ||!sido ||
       cateRef.current.value=="" || !selName || !selSize ) {
         alert("모든 항목을 입력해주세요");

@@ -1,34 +1,17 @@
 import axios from "axios";
 import { useEffect, useRef, useState } from "react";
-import CommentItem from "./CommentItem";
-import { IoSend } from "react-icons/io5";
+import { MdDelete } from "react-icons/md";
+import { HiMiniPencilSquare } from "react-icons/hi2";
 
 const Comment = ({ postId }) => {
   const username = localStorage.getItem("username");
   const comm = useRef();
   const [commData, setCommData] = useState();
+  const [commTag, setCommTag] = useState();
 
-  const testdata = [
-    {
-      board: {
-          postId:2,
-          cate:"가전제품류",
-          manager:"해운대구청",
-          name:"공기청정기",
-          pay:"유료",
-          price:8000,
-          sido:"해운대구",
-          size:"높이 1m 이상",
-      },
-      member:{
-          password: "aaaa",
-          username: "maejyomi"
-      },
-      commContent: "댓글",
-      commentId: 16,
-      commDate: "2023-11-24T06:46:09.898+00:00"
-  }
-  ]
+  // 댓글 수정버튼 눌렀는지 확인하는 변수
+  const [edit, setEdit] = useState(false);
+  const [check, setCheck] = useState(false);
 
   // 댓글 작성
   const commSubmit = () => {
@@ -67,7 +50,31 @@ const Comment = ({ postId }) => {
 
   };
 
-  
+  // 댓글 수정
+  const editClick = () => {
+    setEdit(true);
+  }
+
+  // 댓글 삭제
+  const handleCommDelete = (commentId) => {
+    // console.log(commentId);
+    if (window.confirm("댓글을 삭제하시겠습니까?")) {
+      const url = `http://10.125.121.214:8080/api/user/delComment?commentId=${commentId}&postId=${postId}`;
+      axios.delete(url, {
+        headers: {
+          Authorization: localStorage.getItem("token")
+        }
+      })
+        .then(resp => {
+          alert("삭제되었습니다");
+          // console.log(resp.data);
+          setCommData(resp.data);
+        })
+        .catch((err) => console.log(err))
+
+    }
+  }
+
   useEffect(() => {
     const url = `http://10.125.121.214:8080/api/user/nowComment?postId=${postId}`;
 
@@ -90,6 +97,34 @@ const Comment = ({ postId }) => {
   useEffect(() => {
     if (!commData) return;
 
+    setCommTag(commData.map((item, idx) => {
+      // console.log(item.commentId);
+      return (
+        <div className="flex justify-between" key={item.commentId}>
+          <div className="flex flex-col mt-2 ">
+            <p className="font-bold">{idx+1}. {item.member} <span className="text-[0.7rem] text-gray-300">{item.commDate.slice(0,10)}</span></p>
+            <p className="ml-4 mt-1">{item.commContent}</p>
+          </div>
+          {
+            username === item.member
+              ? <div className="flex items-center gap-1 mt-2">
+                <div>
+                  <button onClick={editClick}>
+                    <HiMiniPencilSquare className="text-xl text-gray-400 hover:text-green-600" />
+                  </button>
+                </div>
+                <div>
+                  <button onClick={() => handleCommDelete(item.commentId)}>
+                    <MdDelete className="text-xl text-gray-400 hover:text-red-500" />
+                  </button>
+                </div>
+              </div>
+              : ""
+          }
+        </div>
+      )
+    }))
+
   }, [commData])
 
 
@@ -104,11 +139,11 @@ const Comment = ({ postId }) => {
                 <div className="flex ml-2">
                   <h3 className="font-bold">{username}</h3>
                 </div>
-                
                 <button
                   onClick={commSubmit}
+                  className="text-white bg-now-blue hover:bg-[#2969fd] rounded-lg h-[30px] w-[10%]"
                 >
-                  <IoSend className='text-2xl text-now-blue hover:text-[#2969fd]'/>
+                  등록
                 </button>
               </div>
             </div>
@@ -116,7 +151,7 @@ const Comment = ({ postId }) => {
         </div>
         <div className="">
           {
-            commData && commData.map((item, idx)=><CommentItem comm={item} idx={idx} username={username} postId={postId} setCommData={setCommData}/>)
+            commTag
           }
         </div>
       </div>
