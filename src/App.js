@@ -10,7 +10,7 @@ import NanoomPost from './components/board/NanoomPost';
 import { RecoilRoot } from 'recoil';
 import NanoomDetail from './components/board/NanoomDetail';
 import NanoomEdit from './components/board/NanoomEdit';
-
+import MyPage from './components/board/MyPage'
 
 function App() {
   return (
@@ -27,6 +27,7 @@ function App() {
             <Route path='/nanoompost' element={<NanoomPost />}></Route>
             <Route path='/nanoomdetail/:postId' element={<NanoomDetail />}></Route>
             <Route path='/nanoomEdit/:postId' element={<NanoomEdit />}></Route>
+            <Route path='/myPage/:username' element={<MyPage />}></Route>
           </Routes>
         </RecoilRoot>
       </main>

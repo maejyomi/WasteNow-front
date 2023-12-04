@@ -7,6 +7,7 @@ const Nav = () => {
 
   const [isLoggedIn, setIsLoggedIn] = useRecoilState(LoginStateAtom);
   const navigate = useNavigate();
+  const name = localStorage.getItem("username");
 
   const logoutBtn = () => {
     localStorage.removeItem("token");
@@ -26,14 +27,18 @@ const Nav = () => {
   },[])
 
   return (
-    <div className="max-w-full flex justify-between items-center p-5 px-[5rem] font-sans">
+    <div className="max-w-full flex justify-between items-center p-4 px-[5rem] font-sans">
       <div>
         <h1 className="text-now-blue text-3xl font-bold"><Link to='/'>WasteNOW</Link></h1>
       </div>
       <ul className="flex gap-7 text-lg text-black">
         <li className="hover:text-[#83a8ff] hover:font-extrabold hover:text-xl transition-all"><Link to='/'>Home</Link></li>
         <li>About</li>
-        <li>마이페이지</li>
+        {
+          isLoggedIn
+          ?<li className="hover:text-[#83a8ff] hover:font-extrabold hover:text-xl transition-all"><Link to={`/myPage/${name}`}>마이페이지</Link></li>
+          :<li className="hover:text-[#83a8ff] hover:font-extrabold hover:text-xl transition-all"><Link to='/login'>마이페이지</Link></li>
+        }
         {
           isLoggedIn
           ?<li className="hover:text-[#83a8ff] hover:font-extrabold hover:text-xl transition-all" onClick={logoutBtn}><Link to='/'>로그아웃</Link></li> 
