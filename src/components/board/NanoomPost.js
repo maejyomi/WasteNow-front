@@ -90,22 +90,19 @@ const NanoomPost = () => {
 
   },[selName]);
 
-  
-
-
   // 이미지 업로드
   const [imgUrl, setImgUrl] = useState();
 
   const handleImage = (e) => {
-    // const file = e.target.files[0]
-    console.log(e.target.files[0]);
-    setImgUrl(e.target.files[0]);
+    const file = e.target.files[0]
+    // console.log(e.target.files[0]);
+    // setImgUrl(e.target.files[0]);
 
-    // const reader = new FileReader();
-    // reader.onload = (e) => {
-    //   setImgUrl(e.target.result);
-    // }
-    // reader.readAsDataURL(file);
+    const reader = new FileReader();
+    reader.onload = (e) => {
+      setImgUrl(e.target.result);
+    }
+    reader.readAsDataURL(file);
   }
 
   useEffect(()=>{
