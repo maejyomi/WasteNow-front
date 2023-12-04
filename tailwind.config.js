@@ -7,7 +7,8 @@ module.exports = {
         'now-blue' : '#5586f8',
       },
       fontFamily : {
-        sans : ["Nanum Gothic", "sans-serif"]
+        sans : ["Jua", "sans-serif"],
+        noto : ["Noto Sans KR", "sans-serif"]
       },
       
     },
