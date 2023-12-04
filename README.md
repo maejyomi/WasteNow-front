@@ -74,6 +74,11 @@
 - 게시글 리스트 검색 기능 추가
 
 
+#### 23.12.04 : 마이페이지 구현 , 메인 화면 변경
+
+- 마이페이지에서 게시글 모아보기 구현
+- 메인화면 디자인 및 폰트 변경
+
 ## Ref.
 - .gitignore
 - [pixabay](https://pixabay.com/images/search/white%20male%203d%20model/)
