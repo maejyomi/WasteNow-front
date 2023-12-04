@@ -76,7 +76,7 @@ const NanoomList = () => {
                 <tr className="" key={item.postId}>
                     <td className="pl-5">{idx+1}</td>
                     <td>{item.tag}</td>
-                    <td><Link to={`/nanoomdetail/${item.postId}`}>{item.title}</Link></td>
+                    <td className="hover:underline"><Link to={`/nanoomdetail/${item.postId}`}>{item.title}</Link></td>
                     <td>{item.member.username}</td>
                     <td>{item.createDate.slice(0,10)}</td>
                     <td>{item.count}</td>
@@ -86,10 +86,16 @@ const NanoomList = () => {
 
     }, [data])
 
+    const enterKeyDown = (e) =>{
+        if(e.key == "Enter"){
+            listSearch(e);
+        }
+    }
+
     return (
         <div className="grow px-[8rem] bg-gradient-to-b from-[#83a8ff] to-[#ffffff]">
             <h1 className="flex justify-end mt-[1rem] text-lg text-white font-bold tracking-wide"><span className="font-bold text-[#F9F871]">{name}</span>님 환영합니다.</h1>
-            <div className="flex flex-col h-[85%] mt-[1rem]  bg-white shadow-lg rounded-lg px-[3rem] py-[2rem]">
+            <div className="flex max-w-[800px] m-auto flex-col h-[85%] mt-[1rem]  bg-white shadow-lg rounded-lg px-[3rem] py-[2rem]">
                 <div className="flex items-center justify-between">
                     <div>
                         <h1 className='text-center font-bold text-2xl'>나눔 게시판</h1>
@@ -98,6 +104,7 @@ const NanoomList = () => {
                         <input type="text"
                             ref={searchKeyword}
                             placeholder="키워드를 입력해주세요"
+                            onKeyDown={enterKeyDown}
                             className="w-[15rem] border-none bg-[#ededed] rounded-lg" />
                         <button onClick={listSearch} className="w-[4rem] ml-4 bg-now-blue hover:bg-[#2969fd] h-full rounded-lg text-white ">검색</button>
                     </div>
@@ -121,7 +128,7 @@ const NanoomList = () => {
                 </div>
                 <hr className="border-2" />
                 <div className="flex justify-end ">
-                    <div className=""><Link to='/nanoompost'>글쓰기</Link></div>
+                    <div className="hover:underline"><Link to='/nanoompost'>글쓰기</Link></div>
                 </div>
             </div>
         </div>

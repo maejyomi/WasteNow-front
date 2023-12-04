@@ -18,33 +18,6 @@ const NanoomDetail = () => {
 
     const [detailTag, setDetailTag] = useState();
 
-    // 테스트용 데이터
-    const testData = [
-        {
-            bigTrash: {
-                bigId:1,
-                cate:"가전제품류",
-                manager:"해운대구청",
-                name:"공기청정기",
-                pay:"유료",
-                price:8000,
-                sido:"해운대구",
-                size:"높이 1m 이상",
-            },
-            member:{
-                password: "aaaa",
-                username: "maejyomi"
-            },
-            postId:2,
-            content: "1년 사용한 소파 무료나눔 합니다! 영도구 ## 아파트 앞에서 가져가시면 됩니다!",
-            title: "소파 무료나눔 합니다",
-            image: "이미지",
-            count: 0,
-            tag: "나눔중",
-            createDate: "2023-11-24T06:46:09.898+00:00"
-        }
-    ]
-
     // 게시글 삭제
     const handleDelete = () => {
         // console.log(postId); // 아이디 확인
@@ -81,10 +54,6 @@ const NanoomDetail = () => {
                 console.log(err);
             })
 
-
-
-        // 테스트용
-        //setDetailData(testData);
     }, [])
 
     useEffect(() => {
@@ -154,11 +123,11 @@ const NanoomDetail = () => {
 
     return (
         <div className="grow px-[8rem] bg-gradient-to-b from-[#83a8ff] to-[#ffffff]">
-            <div className="flex flex-col h-[50%] w-full max-w-[800px] m-auto mt-[4rem] bg-white shadow-lg rounded-lg px-[3rem] py-[2rem]">
+            <div className="flex flex-col h-[50%] w-full max-w-[800px] m-auto mt-[4rem] bg-white shadow-lg rounded-t-lg px-[3rem] py-[2rem]">
                 {detailTag}
             </div>
             <Comment postId={postId} />
-            <div className="flex m-auto max-w-[800px] justify-center my-[1rem]">
+            <div className="flex m-auto max-w-[800px] justify-center my-[1rem] hover:underline">
                 <Link to='/nanoomlist'><p>목록으로</p></Link>
             </div>
         </div>

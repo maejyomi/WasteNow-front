@@ -8,28 +8,6 @@ const Comment = ({ postId }) => {
   const comm = useRef();
   const [commData, setCommData] = useState();
 
-  const testdata = [
-    {
-      board: {
-          postId:2,
-          cate:"가전제품류",
-          manager:"해운대구청",
-          name:"공기청정기",
-          pay:"유료",
-          price:8000,
-          sido:"해운대구",
-          size:"높이 1m 이상",
-      },
-      member:{
-          password: "aaaa",
-          username: "maejyomi"
-      },
-      commContent: "댓글",
-      commentId: 16,
-      commDate: "2023-11-24T06:46:09.898+00:00"
-  }
-  ]
-
   // 댓글 작성
   const commSubmit = () => {
     if (comm.current.value === "") {
@@ -94,7 +72,7 @@ const Comment = ({ postId }) => {
 
 
   return (
-    <div className="flex flex-col w-full max-w-[800px] m-auto  mt-[1rem] bg-white shadow-lg rounded-lg px-[3rem] py-[2rem]">
+    <div className="flex flex-col w-full max-w-[800px] m-auto bg-white shadow-lg rounded-b-lg px-[3rem] py-[2rem]">
       <div className="grow flex flex-col">
         <div className="w-full mb-2">
           <div className="w-full">
@@ -116,7 +94,7 @@ const Comment = ({ postId }) => {
         </div>
         <div className="">
           {
-            commData && commData.map((item, idx)=><CommentItem comm={item} idx={idx} username={username} postId={postId} setCommData={setCommData}/>)
+            commData && commData.map((item, idx)=><CommentItem comm={item} key={idx} idx={idx} username={username} postId={postId} setCommData={setCommData}/>)
           }
         </div>
       </div>
