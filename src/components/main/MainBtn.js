@@ -3,12 +3,12 @@ const MainBtn = ({link, imgSrc, imgAlt, title, handleClick}) => {
     return (
         <div>
             <div onClick={handleClick}
-                className="max-w-sm rounded-full shadow-lg hover:border-dotted hover:border-4 hover:border-now-blue hover:transition-all">
+                className="max-w-[20rem] rounded-full shadow-lg hover:border-4 hover:border-now-blue hover:transition-all">
                 <Link to={link}>
                     <img className="object-fit rounded-full" src={imgSrc} alt={imgAlt}/>
                 </Link>
             </div>
-            <h3 className="mt-5 font-bold text-slate-600 text-xl">{title}</h3>
+            <h3 className="font-noto mt-5 font-bold text-white text-3xl">{title}</h3>
         </div>
     )
 }
