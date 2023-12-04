@@ -42,15 +42,17 @@ const MyPage = () => {
     return (
         <div className="grow px-[8rem] bg-gradient-to-b from-[#83a8ff] to-[#ffffff]">
             <div className="flex max-w-[800px] m-auto flex-col h-[85%] mt-[4rem]  bg-white shadow-lg rounded-lg px-[3rem] py-[2rem]">
-                <div className='flex items-center justify-between'>
-                    <h1 className='text-start font-bold text-2xl'>{username}</h1>
-                    <div>
-                        작성글 
+                <div className='flex gap-2 items-center'>
+                    <h1 className='text-start font-bold text-xl'>{username}</h1>
+                    <div >
+                        님의 마이페이지
                     </div>
                 </div>
-                <div className="mt-[2rem] h-full">
+                <hr className='my-[1rem]'/>
+                <h1 className='text-now-blue text-2xl'>작성글 모아보기</h1>
+                <div className=" h-full">
                     <table className="table-auto w-full">
-                        <thead className="border-b-4 text-lg text-left">
+                        <thead className="border-b-4 text-md text-left">
                             <tr>
                                 <th className="p-2">번호</th>
                                 <th>상태</th>
