@@ -2,7 +2,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import './App.css';
 import Main from './components/main/Main';
 import Nav from './components/Nav';
-import Search from './components/Search';
+import Search from './components/Search/Search';
 import Login from './components/member/Login';
 import SignUp from './components/member/SignUp';
 import NanoomList from './components/board/NanoomList';

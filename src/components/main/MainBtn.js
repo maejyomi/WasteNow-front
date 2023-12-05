@@ -8,7 +8,7 @@ const MainBtn = ({link, imgSrc, imgAlt, title, handleClick}) => {
                     <img className="object-fit rounded-full" src={imgSrc} alt={imgAlt}/>
                 </Link>
             </div>
-            <h3 className="font-noto mt-5 font-bold text-white text-3xl">{title}</h3>
+            <h3 className="mt-5 font-bold text-white text-2xl">{title}</h3>
         </div>
     )
 }

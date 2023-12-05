@@ -7,8 +7,8 @@ module.exports = {
         'now-blue' : '#5586f8',
       },
       fontFamily : {
-        sans : ["Jua", "sans-serif"],
-        noto : ["Noto Sans KR", "sans-serif"]
+        Jua : ["Jua", "sans-serif"],
+        sans : ["Noto Sans KR", "sans-serif"]
       },
       
     },

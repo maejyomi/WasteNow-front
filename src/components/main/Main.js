@@ -20,8 +20,8 @@ const Main = () => {
       <div className='h-full backdrop-blur-sm'>
 
         <div className="text-now-blue my-16 ml-[10rem] lg:ml-[20rem] ">
-          <h1 className="text-6xl font-bold font-noto text-white drop-shadow-xl">WasteNOW</h1>
-          <p className="font-noto text-[2rem] mt-[1rem] ml-[5rem] font-bold tracking-wide text-[#fff] drop-shadow-lg">
+          <h1 className="text-5xl font-bold font-noto text-white drop-shadow-xl">WasteNOW</h1>
+          <p className="text-[2rem] mt-[1rem] ml-[5rem] font-bold tracking-wide text-[#fff] drop-shadow-lg">
             지금, 대형 폐기물의 수수료를 책임지다
           </p>
         </div>
