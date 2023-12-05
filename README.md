@@ -79,6 +79,12 @@
 - 마이페이지에서 게시글 모아보기 구현
 - 메인화면 디자인 및 폰트 변경
 
+#### 23.12.05 : 페이징 기능 추가
+
+- 페이징 기능 구현 진행중
+- 마이페이지 댓글 모아보기 추가
+- 수수료 총합 진행중
+
 ## Ref.
 - .gitignore
 - [pixabay](https://pixabay.com/images/search/white%20male%203d%20model/)
