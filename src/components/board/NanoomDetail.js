@@ -122,13 +122,15 @@ const NanoomDetail = () => {
     }, [detailData])
 
     return (
-        <div className="grow px-[8rem] bg-gradient-to-b from-[#83a8ff] to-[#ffffff]">
-            <div className="flex flex-col h-[50%] w-full max-w-[800px] m-auto mt-[4rem] bg-white shadow-lg rounded-t-lg px-[3rem] py-[2rem]">
-                {detailTag}
-            </div>
-            <Comment postId={postId} />
-            <div className="flex m-auto max-w-[800px] justify-center my-[1rem] hover:underline">
-                <Link to='/nanoomlist'><p>목록으로</p></Link>
+        <div className="grow flex flex-col bg-[url('./images/board_bg_img.jpg')] bg-center bg-cover">
+            <div className='h-full backdrop-blur-sm'>
+                <div className="flex flex-col h-[50%] w-full max-w-[800px] m-auto mt-[4rem] bg-white shadow-lg rounded-t-lg px-[3rem] py-[2rem]">
+                    {detailTag}
+                </div>
+                <Comment postId={postId} />
+                <div className="flex m-auto max-w-[800px] justify-center my-[1rem] hover:underline">
+                    <Link to='/nanoomlist'><p>목록으로</p></Link>
+                </div>
             </div>
         </div>
     )

@@ -47,38 +47,40 @@ const MyPage = () => {
     }, [])
 
     return (
-        <div className="grow px-[8rem] bg-gradient-to-b from-[#83a8ff] to-[#ffffff]">
-            <div className="flex max-w-[800px] m-auto flex-col h-[85%] mt-[4rem]  bg-white shadow-lg rounded-lg px-[3rem] py-[2rem]">
-                <div className='flex flex-col gap-2 '>
-                    <p className='text-center text-xl'>My Page</p>
-                    <div className='flex gap-4'>
-                        {
-                            boardClick
-                                ? <button className='text-now-blue'>작성글</button>
-                                : <button onClick={showBoard} className='hover:underline'>작성글</button>
-                        }
-                        {
-                            commentClick
-                                ? <button className='text-now-blue'>작성 댓글</button>
-                                : <button onClick={showComm} className='hover:underline'>작성 댓글</button>
-                        }
+        <div className="grow flex flex-col bg-[url('./images/mypage_bg_img.png')] bg-center bg-cover">
+            <div className='h-full backdrop-blur-sm'>
+                <div className="flex max-w-[800px] m-auto flex-col h-[85%] mt-[4rem]  bg-white shadow-lg rounded-lg px-[3rem] py-[2rem]">
+                    <div className='flex flex-col gap-2 '>
+                        <p className='text-center text-xl'>My Page</p>
+                        <div className='flex gap-4'>
+                            {
+                                boardClick
+                                    ? <button className='text-now-blue'>작성글</button>
+                                    : <button onClick={showBoard} className='hover:underline'>작성글</button>
+                            }
+                            {
+                                commentClick
+                                    ? <button className='text-now-blue'>작성 댓글</button>
+                                    : <button onClick={showComm} className='hover:underline'>작성 댓글</button>
+                            }
+                        </div>
                     </div>
-                </div>
-                <hr className='my-[1rem]' />
-                <div className='flex items-center mb-1'>
-                    <h1 className='text-start font-bold text-xl'>{username}</h1>
-                    <p>님의 <span className='text-now-blue'>{
-                        boardClick ? "작성글" : "작성 댓글"
-                    }</span> 목록입니다.</p>
+                    <hr className='my-[1rem]' />
+                    <div className='flex items-center mb-1'>
+                        <h1 className='text-start font-bold text-xl'>{username}</h1>
+                        <p>님의 <span className='text-now-blue'>{
+                            boardClick ? "작성글" : "작성 댓글"
+                        }</span> 목록입니다.</p>
 
+                    </div>
+                    {
+                        boardClick
+                            ? <MyPageBoard data={myBoardList} />
+                            : <MyPageComment data={myCommentList} />
+                    }
                 </div>
-                {
-                    boardClick
-                        ? <MyPageBoard data={myBoardList} />
-                        : <MyPageComment data={myCommentList} />
-                }
+                <button className='flex m-auto mt-[1rem] hover:underline'><Link to='/nanoomlist'>목록으로</Link></button>
             </div>
-            <button className='flex m-auto mt-[1rem] hover:underline'><Link to='/nanoomlist'>목록으로</Link></button>
         </div>
     )
 }

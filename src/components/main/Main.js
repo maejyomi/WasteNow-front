@@ -16,7 +16,7 @@ const Main = () => {
   }
 
   return (
-    <div className="grow flex flex-col bg-[url('./images/backgroundImg.png')] bg-center bg-cover">
+    <div className="grow flex flex-col bg-[url('./images/main_bg_img.png')] bg-center bg-cover">
       <div className='h-full backdrop-blur-sm'>
 
         <div className="text-now-blue my-16 ml-[10rem] lg:ml-[20rem] ">
