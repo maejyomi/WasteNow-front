@@ -72,7 +72,7 @@ const Comment = ({ postId }) => {
 
 
   return (
-    <div className="flex flex-col w-full max-w-[800px] m-auto bg-white shadow-lg rounded-b-lg px-[3rem] py-[2rem]">
+    <div className="max-h-[400px] flex flex-col w-full max-w-[800px] m-auto bg-white shadow-lg rounded-b-lg px-[3rem] py-[2rem]">
       <div className="grow flex flex-col">
         <div className="w-full mb-2">
           <div className="w-full">
@@ -92,7 +92,7 @@ const Comment = ({ postId }) => {
             </div>
           </div>
         </div>
-        <div className="">
+        <div className="max-h-[180px] overflow-auto ">
           {
             commData && commData.map((item, idx)=><CommentItem comm={item} key={idx} idx={idx} username={username} postId={postId} setCommData={setCommData}/>)
           }

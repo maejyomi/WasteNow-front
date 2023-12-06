@@ -1,8 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react'
-import CustomSelect from '../CustomSelect';
+import CustomSelect from '../../CustomSelect';
 import axios from 'axios';
 import { Link, useNavigate } from 'react-router-dom';
-import HasRefSelect from '../HasRefSelect';
+import HasRefSelect from '../../HasRefSelect';
 
 const NanoomPost = () => {
 

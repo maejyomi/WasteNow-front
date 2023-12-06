@@ -1,7 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom"
-import Comment from "./Comment.js";
+import Comment from "../comment/Comment";
 import { MdDelete } from "react-icons/md";
 import { HiMiniPencilSquare } from "react-icons/hi2";
 
@@ -52,6 +52,8 @@ const NanoomDetail = () => {
             })
             .catch(err => {
                 console.log(err);
+                alert("로그인이 필요한 서비스입니다.")
+                navigate("/login");
             })
 
     }, [])
@@ -86,12 +88,12 @@ const NanoomDetail = () => {
                                 : ""
                         }
                     </div>
-                    <div className="flex h-[80%] gap-4">
-                        <div className="grow w-[50%] mt-2">
+                    <div className="flex mt-2 gap-4">
+                        <div className="grow w-[50%] h-[273px] mt-2">
                             <img src={item.image} className="h-[100%] w-[100%] object-cover" />
                         </div>
 
-                        <div className="grow flex flex-col w-[70%]">
+                        <div className="grow flex flex-col w-[70%] h-[273px] ">
                             <div className="flex justify-between text-sm my-2">
                                 <p>{item.member.username}</p>
                                 <p>{item.createDate.slice(0, 10)}</p>
@@ -102,20 +104,19 @@ const NanoomDetail = () => {
                                     className="w-[100%] h-[100%] resize-none border-none focus:ring-0">
                                 </textarea>
                             </div>
+                            <div className="flex items-center justify-end text-sm text-black">
+                                <div className="flex gap-2">
+                                    <p className="border-4 border-[#baffb5] rounded-full p-1 px-2 font-bold">#{item.bigTrash.name}</p>
+                                    <p className="border-4 border-[#fafa98] rounded-full p-1 px-2 font-bold">#{item.bigTrash.size}</p>
+                                    {
+                                        item.tag === "나눔중"
+                                            ? <p className="border-4 border-[#bbf9ff] rounded-full p-1 px-2 font-bold">#{item.tag}</p>
+                                            : <p className="border-4 border-[#d6d6d6] bg-[#d6d6d6] rounded-full p-1 px-2 font-bold">#{item.tag}</p>
+                                    }
+                                </div>
+                            </div>
                         </div>
                     </div>
-                    <div className="flex items-center justify-end my-2 text-sm text-black">
-                        <div className="flex gap-2">
-                            <p className="border-4 border-[#baffb5] rounded-full p-1 px-2 font-bold">#{item.bigTrash.name}</p>
-                            <p className="border-4 border-[#fafa98] rounded-full p-1 px-2 font-bold">#{item.bigTrash.size}</p>
-                            {
-                                item.tag === "나눔중"
-                                    ? <p className="border-4 border-[#bbf9ff] rounded-full p-1 px-2 font-bold">#{item.tag}</p>
-                                    : <p className="border-4 border-[#d6d6d6] bg-[#d6d6d6] rounded-full p-1 px-2 font-bold">#{item.tag}</p>
-                            }
-                        </div>
-                    </div>
-
                 </div>
             )
         }))
@@ -124,7 +125,7 @@ const NanoomDetail = () => {
     return (
         <div className="grow flex flex-col bg-[url('./images/board_bg_img.jpg')] bg-center bg-cover">
             <div className='h-full backdrop-blur-sm'>
-                <div className="flex flex-col h-[50%] w-full max-w-[800px] m-auto mt-[4rem] bg-white shadow-lg rounded-t-lg px-[3rem] py-[2rem]">
+                <div className="flex flex-col h-[40%] w-full max-w-[800px] m-auto mt-[4rem] bg-white shadow-lg rounded-t-lg px-[3rem] py-[2rem]">
                     {detailTag}
                 </div>
                 <Comment postId={postId} />

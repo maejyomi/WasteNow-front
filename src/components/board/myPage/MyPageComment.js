@@ -15,7 +15,7 @@ const MyPageComment = ({ data }) => {
                     {
                         data.map((item, idx) => {
                             return (
-                                <tr className="" key={item.board.postId}>
+                                <tr className="" key={idx}>
                                     <td className="pl-5">{idx + 1}</td>
                                     <td className="hover:underline"><Link to={`/nanoomdetail/${item.board.postId}`}>{item.board.title}</Link></td>
                                     <td>{item.commContent}</td>

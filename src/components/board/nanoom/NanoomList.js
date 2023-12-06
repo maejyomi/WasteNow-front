@@ -1,10 +1,12 @@
 import axios from "axios";
 import { useEffect, useRef, useState } from "react";
 import Pagination from "react-js-pagination";
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import './react-paginate.css';
 
 const NanoomList = () => {
+    const navigate = useNavigate();
+
     const name = localStorage.getItem("username");
 
     // 게시글 리스트
@@ -35,7 +37,9 @@ const NanoomList = () => {
                 console.log("검색결과: ", resp.data);
                 setData(resp.data);
             })
-            .catch(err => console.log(err));
+            .catch(err => {
+                console.log(err);
+            });
 
     }
 
@@ -73,6 +77,7 @@ const NanoomList = () => {
             }
         })
             .then(resp => {
+                
                 console.log("게시글 리스트: ", resp.data);
                 setTotalNum(resp.data.totalElements)
                 setData(resp.data.content);

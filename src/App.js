@@ -5,12 +5,12 @@ import Nav from './components/Nav';
 import Search from './components/Search/Search';
 import Login from './components/member/Login';
 import SignUp from './components/member/SignUp';
-import NanoomList from './components/board/NanoomList';
-import NanoomPost from './components/board/NanoomPost';
+import NanoomList from './components/board/nanoom/NanoomList';
+import NanoomPost from './components/board/nanoom/NanoomPost';
 import { RecoilRoot } from 'recoil';
-import NanoomDetail from './components/board/NanoomDetail';
-import NanoomEdit from './components/board/NanoomEdit';
-import MyPage from './components/board/MyPage'
+import NanoomDetail from './components/board/nanoom/NanoomDetail';
+import NanoomEdit from './components/board/nanoom/NanoomEdit';
+import MyPage from './components/board/myPage/MyPage'
 
 function App() {
   return (

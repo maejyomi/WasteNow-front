@@ -70,7 +70,7 @@ const Search = () => {
 
     // 총 수수료 아이템 삭제
     const deleteSelItem = (targetId) => {
-        console.log("선택한 아이디:", targetId);
+        // console.log("선택한 아이디:", targetId);
         setSelectItem(selectItem.filter((item) => item.id != targetId));
     }
 
