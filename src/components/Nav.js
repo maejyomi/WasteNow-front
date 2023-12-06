@@ -33,7 +33,6 @@ const Nav = () => {
       </div>
       <ul className="flex gap-7 text-lg text-black">
         <li className="hover:text-[#83a8ff] hover:font-extrabold hover:text-xl transition-all"><Link to='/'>Home</Link></li>
-        <li>About</li>
         {
           isLoggedIn
           ?<li className="hover:text-[#83a8ff] hover:font-extrabold hover:text-xl transition-all"><Link to={`/myPage/${name}`}>MyPage</Link></li>

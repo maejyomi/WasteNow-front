@@ -55,12 +55,12 @@ const MyPage = () => {
                         <div className='flex gap-4'>
                             {
                                 boardClick
-                                    ? <button className='text-now-blue'>작성글</button>
+                                    ? <button className='text-now-blue font-bold'>작성글</button>
                                     : <button onClick={showBoard} className='hover:underline'>작성글</button>
                             }
                             {
                                 commentClick
-                                    ? <button className='text-now-blue'>작성 댓글</button>
+                                    ? <button className='text-now-blue font-bold'>작성 댓글</button>
                                     : <button onClick={showComm} className='hover:underline'>작성 댓글</button>
                             }
                         </div>
@@ -79,7 +79,7 @@ const MyPage = () => {
                             : <MyPageComment data={myCommentList} />
                     }
                 </div>
-                <button className='flex m-auto mt-[1rem] hover:underline'><Link to='/nanoomlist'>목록으로</Link></button>
+                <button className='flex m-auto mt-[1rem] text-white hover:underline'><Link to='/nanoomlist'>목록으로</Link></button>
             </div>
         </div>
     )

@@ -187,7 +187,7 @@ const NanoomPost = () => {
             </div>
           </div>
         </div>
-        <button className='flex m-auto mt-[1rem] hover:underline'><Link to='/nanoomlist'>목록으로</Link></button>
+        <button className='flex m-auto mt-[1rem] text-white hover:underline'><Link to='/nanoomlist'>목록으로</Link></button>
       </div>
     </div>
   )

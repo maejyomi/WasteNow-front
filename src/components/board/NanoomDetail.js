@@ -128,7 +128,7 @@ const NanoomDetail = () => {
                     {detailTag}
                 </div>
                 <Comment postId={postId} />
-                <div className="flex m-auto max-w-[800px] justify-center my-[1rem] hover:underline">
+                <div className="flex m-auto max-w-[800px] justify-center my-[1rem] text-white hover:underline">
                     <Link to='/nanoomlist'><p>목록으로</p></Link>
                 </div>
             </div>

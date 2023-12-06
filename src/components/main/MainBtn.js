@@ -3,7 +3,7 @@ const MainBtn = ({link, imgSrc, imgAlt, title, handleClick}) => {
     return (
         <div>
             <div onClick={handleClick}
-                className="max-w-[20rem] rounded-full shadow-lg hover:border-4 hover:border-now-blue hover:transition-all">
+                className="max-w-[20rem] rounded-full shadow-lg hover:border-dotted hover:border-4 hover:border-now-blue hover:transition-all">
                 <Link to={link}>
                     <img className="object-fit rounded-full" src={imgSrc} alt={imgAlt}/>
                 </Link>

@@ -116,7 +116,7 @@ const NanoomList = () => {
     return (
         <div className="grow flex flex-col bg-[url('./images/board_bg_img.jpg')] bg-center bg-cover">
             <div className='h-full backdrop-blur-sm'>
-                <h1 className="flex justify-center mt-[1rem] text-lg text-white tracking-wide"><span className="text-[#F9F871]">{name}</span>님 환영합니다.</h1>
+                <h1 className="mt-[1rem] text-center text-lg text-white tracking-wide"><span className="text-[#F9F871]">{name}</span>님 환영합니다.</h1>
                 <div className="flex w-[800px] m-auto flex-col h-[85%] mt-[1rem] bg-white shadow-lg rounded-lg px-[3rem] py-[2rem]">
                     <div className="flex items-center justify-between">
                         <div>

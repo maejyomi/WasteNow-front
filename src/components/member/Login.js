@@ -50,7 +50,7 @@ const Login = () => {
     return (
         <div className="grow flex flex-col bg-[url('./images/login_bg_img.jpg')] bg-center bg-cover">
             <div className='h-full backdrop-blur-sm'>
-                <div className="flex flex-col bg-white w-[30rem] m-auto h-[35rem] mt-[8rem] rounded-3xl shadow-lg p-5">
+                <div className="flex flex-col bg-white w-[30rem] m-auto h-[35rem] mt-[8rem]  rounded-3xl shadow-lg p-5">
                     <p className="text-center text-2xl font-bold mt-4">로그인</p>
                     <div className="flex flex-col mt-[2rem] px-8">
                         <label htmlFor='loginId'>아이디</label>
