@@ -59,8 +59,8 @@ const NanoomPost = () => {
   // 카테고리가 바뀌면 해당 폐기물 종류 이름 가져오기
   useEffect(() => {
     //console.log(cate);
+    console.log(sido, cate);
     if (!cate || !sido) return;
-
     let url = `http://10.125.121.214:8080/api/wastename?sido=${sido}&cate=${cate}`;
     console.log(url);
 
@@ -71,7 +71,7 @@ const NanoomPost = () => {
         setWasteName(data);
       })
       .catch(err => console.log(err));
-  }, [cate])
+  }, [sido, cate])
 
   // 폐기물 이름이 선택되면 해당 폐기물 이름의 사이즈 가져오기
   useEffect(() => {
@@ -110,9 +110,9 @@ const NanoomPost = () => {
   }, [imgUrl])
 
 
+
   // 게시글 등록
   const postClick = () => {
-    console.log(content.current.value)
     if (title.current.value === "" || content.current.value === "" || !sido ||
       cateRef.current.value == "" || !selName || !selSize) {
       alert("모든 항목을 입력해주세요");
@@ -179,7 +179,7 @@ const NanoomPost = () => {
           </div>
           <div className='flex flex-col justify-between h-full mt-[1rem] gap-5'>
             <div className='grow'>
-              <textarea id="content" ref={content} rows="4" className="block p-2.5 w-[100%] text-sm resize-none h-full text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 " placeholder="내용을 자유롭게 작성해보세요"></textarea>
+              <textarea id="content" ref={content} rows="4" className="block p-2.5 w-[100%] text-lg resize-none h-full text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 " placeholder="내용을 자유롭게 작성해보세요"></textarea>
             </div>
             <div className='flex justify-between'>
               <input type='file' onChange={handleImage} id='img' />

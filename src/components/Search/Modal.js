@@ -36,7 +36,7 @@ const Modal = ({ setModalOpen, totalPay, setTotalPay, selectItem, setSelectItem,
                         }
                     </div>
                     <div className="mb-[1.5rem] flex justify-end">
-                        <p className="bg-[#f9eb71] px-1">총 수수료: {totalPay}원</p>
+                        <p className="bg-[#f9eb71] px-1">총 수수료: {totalPay.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")}원</p>
                     </div>
                 </div>
             </div>

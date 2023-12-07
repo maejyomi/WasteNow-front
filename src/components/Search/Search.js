@@ -74,6 +74,11 @@ const Search = () => {
         setSelectItem(selectItem.filter((item) => item.id != targetId));
     }
 
+    // 키워드 입력창 클릭했을 때 내용 지우기
+    const keywordClick = () => {
+        keyword.current.value = "";
+    }
+
     useEffect(() => {
         if (!selectItem) return;
 
@@ -125,6 +130,7 @@ const Search = () => {
                             ref={keyword}
                             list="list"
                             placeholder="키워드를 입력해주세요"
+                            onClick={keywordClick}
                             onKeyDown={enterKeyDown}
                             className="w-full h-[2.5rem] px-4 rounded-lg border-none focus:border-[#5586f8] focus:ring-[#5586f8] bg-[#EDEDED] " />
                         <datalist id="list">
@@ -166,7 +172,7 @@ const Search = () => {
                     className="w-full flex justify-between bg-now-blue hover:bg-[#2969fd] transition-all rounded-lg p-4 hover:cursor-pointer">
                     <div className="flex items-center gap-2">
                         <FaBasketShopping  className="text-xl text-white"/>
-                        <p className="text-xl text-white">{totalPay}원</p>
+                        <p className="text-xl text-white">{totalPay.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")}원</p>
                     </div>
                 </div>
             </div>

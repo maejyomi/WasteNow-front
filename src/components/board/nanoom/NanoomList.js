@@ -95,7 +95,11 @@ const NanoomList = () => {
         setList(data.map((item, idx) => {
             return (
                 <tr className="" key={item.postId}>
-                    <td className="pl-5 py-1">{idx + 1}</td>
+                    {
+                        page > 1
+                        ?<td className="pl-5 py-1">{idx + (15*(page-1)) + 1}</td>
+                        :<td className="pl-5 py-1">{idx + 1}</td>
+                    }
                     {
                         item.tag === "나눔중"
                             ? <td className="text-[#52be9e] font-bold">{item.tag}</td>
