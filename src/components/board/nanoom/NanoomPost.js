@@ -9,7 +9,7 @@ const NanoomPost = () => {
   const name = localStorage.getItem("username");
 
   const selSido = ["강서구", "금정구", "남구", "동래구", "부산진구", "북구", "사상구", "서구", "수영구", "연제구", "영도구", "해운대구"];
-  const selCate = ["가구류", "가전제품류", "기타", "생활용품류"];
+  const selCate = ["가구류", "가전제품류", "생활용품류", "기타"];
 
   const navigate = useNavigate();
 
@@ -47,27 +47,28 @@ const NanoomPost = () => {
       setWasetSize([])
       return;
     }
+
     setSelName(e.target.value);
   }
 
   const wasteSizeChange = (e) => {
     setSelSize(e.target.value);
-    console.log(e.target.value);
-
   }
 
   // 카테고리가 바뀌면 해당 폐기물 종류 이름 가져오기
   useEffect(() => {
-    //console.log(cate);
-    console.log(sido, cate);
     if (!cate || !sido) return;
+    if (sido === "서구" && cate === "기타") {
+      setWasteName([]);
+      return;
+    }
+
+    // setWasteName([]);
     let url = `http://10.125.121.214:8080/api/wastename?sido=${sido}&cate=${cate}`;
-    console.log(url);
 
     fetch(url)
       .then(resp => resp.json())
       .then(data => {
-        console.log(data);
         setWasteName(data);
       })
       .catch(err => console.log(err));
@@ -78,12 +79,10 @@ const NanoomPost = () => {
     if (!cate || !sido || !selName) return;
 
     let url = `http://10.125.121.214:8080/api/wastesize?sido=${sido}&cate=${cate}&name=${selName}`;
-    console.log(url);
 
     fetch(url)
       .then(resp => resp.json())
       .then(data => {
-        console.log(data);
         setWasetSize(data);
       })
       .catch(err => console.log(err));
@@ -137,8 +136,6 @@ const NanoomPost = () => {
       tag: "나눔중",
     }
 
-    console.log(postData);
-
     // 모든 항목이 있을 때 fetch하기
     if (window.confirm("카테고리와 이미지는 수정할 수 없습니다.\n게시글을 등록하시겠습니까?")) {
       axios.post("http://10.125.121.214:8080/api/user/nowWrite", postData, {
@@ -178,6 +175,16 @@ const NanoomPost = () => {
 
           </div>
           <div className='flex flex-col justify-between h-full mt-[1rem] gap-5'>
+            <div className='flex w-full justify-center'>
+
+              {
+                imgUrl &&
+                <div className='w-[250px] h-[250px] bg-gray-300'>
+                  <img className='w-full h-full object-cover' src={imgUrl}></img>
+                </div>
+              }
+
+            </div>
             <div className='grow'>
               <textarea id="content" ref={content} rows="4" className="block p-2.5 w-[100%] text-lg resize-none h-full text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 " placeholder="내용을 자유롭게 작성해보세요"></textarea>
             </div>

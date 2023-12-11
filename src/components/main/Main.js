@@ -1,5 +1,5 @@
-import search from '../../images/search2.png';
-import share from '../../images/share2.png';
+import search from '../../images/main_btn_1.png';
+import share from '../../images/main_btn_2.png';
 import MainBtn from './MainBtn';
 import { useNavigate } from 'react-router-dom';
 

@@ -6,8 +6,6 @@ import { HiMiniPencilSquare } from "react-icons/hi2";
 import { IoSend } from "react-icons/io5";
 
 const CommentItem = ({ comm, idx, username, postId, setCommData }) => {
-    // console.log(comm);
-
     const updateCommText = useRef();
     const [edit, setEdit] = useState(false);
 
@@ -51,7 +49,6 @@ const CommentItem = ({ comm, idx, username, postId, setCommData }) => {
 
     // 댓글 삭제
     const handleCommDelete = (commentId) => {
-        // console.log(commentId);
         if (window.confirm("댓글을 삭제하시겠습니까?")) {
             const url = `http://10.125.121.214:8080/api/user/delComment?commentId=${commentId}&postId=${postId}`;
             axios.delete(url, {
@@ -61,7 +58,6 @@ const CommentItem = ({ comm, idx, username, postId, setCommData }) => {
             })
                 .then(resp => {
                     alert("삭제되었습니다");
-                    // console.log(resp.data);
                     setCommData(resp.data);
                 })
                 .catch((err) => console.log(err))
@@ -96,12 +92,12 @@ const CommentItem = ({ comm, idx, username, postId, setCommData }) => {
                         : <div className="flex items-end gap-1 mt-2">
                             <div>
                                 <button onClick={editClick}>
-                                    <HiMiniPencilSquare className="text-2xl text-gray-400 hover:text-green-600" />
+                                    <HiMiniPencilSquare className="text-2xl text-gray-400 hover:text-green-600 transition-all" />
                                 </button>
                             </div>
                             <div>
                                 <button onClick={() => handleCommDelete(comm.commentId)}>
-                                    <MdDelete className="text-2xl text-gray-400 hover:text-red-500" />
+                                    <MdDelete className="text-2xl text-gray-400 hover:text-red-500 transition-all" />
                                 </button>
                             </div>
                         </div>

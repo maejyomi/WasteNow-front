@@ -1,7 +1,6 @@
 import { IoIosCloseCircleOutline } from "react-icons/io";
 
-const Modal = ({ setModalOpen, totalPay, setTotalPay, selectItem, setSelectItem, deleteSelItem }) => {
-    // console.log(selectItem);
+const Modal = ({ setModalOpen, totalPay, setTotalPay, selectItem, deleteSelItem }) => {
 
     const modalClose = () => {
         setModalOpen(false);
@@ -9,7 +8,6 @@ const Modal = ({ setModalOpen, totalPay, setTotalPay, selectItem, setSelectItem,
 
     // 아이템 삭제
     const deleteItem = (id, price) =>{
-        // console.log("삭제: ", id);
         deleteSelItem(id);
         setTotalPay(totalPay-price)
         
@@ -20,7 +18,7 @@ const Modal = ({ setModalOpen, totalPay, setTotalPay, selectItem, setSelectItem,
             <div className="bg-white drop-shadow-lg rounded-lg w-[450px] h-3/5 p-5">
                 <div className="flex justify-between mb-3 items-center">
                     <h1 className="text-xl font-bold">선택 확인</h1>
-                    <div onClick={modalClose}><IoIosCloseCircleOutline className="text-3xl" /></div>
+                    <div onClick={modalClose}><IoIosCloseCircleOutline className="text-3xl transition-all hover:bg-black hover:rounded-full hover:text-white"/></div>
                 </div>
                 <div className="flex flex-col h-[95%] justify-between overflow-auto no-scrollbar">
                     <div>

@@ -10,17 +10,11 @@ const NanoomDetail = () => {
     const username = localStorage.getItem("username");
 
     const navigate = useNavigate();
-
-    // console.log(username);
-    // console.log(postId);
-
     const [detailData, setDetailData] = useState([]);
-
     const [detailTag, setDetailTag] = useState();
 
     // 게시글 삭제
     const handleDelete = () => {
-        // console.log(postId); // 아이디 확인
         if (window.confirm("삭제된 글은 복구할 수 없습니다.\n삭제하시겠습니까?")) {
             const url = `http://10.125.121.214:8080/api/user/delBoard?postId=${postId}`;
             axios.delete(url, {
@@ -39,7 +33,7 @@ const NanoomDetail = () => {
 
     // 제일 처음 데이터를 받아오는 부분
     useEffect(() => {
-        const url = `http://10.125.121.214:8080/api/user/nowBoard?postId=${postId}`;
+        const url = `http://10.125.121.214:8080/api/user/nowList/board?postId=${postId}`;
 
         axios.get(url, {
             headers: {
@@ -47,8 +41,7 @@ const NanoomDetail = () => {
             }
         })
             .then(resp => {
-                console.log("게시글 상세내용:", resp.data);
-                setDetailData(resp.data);
+                setDetailData([resp.data]);
             })
             .catch(err => {
                 console.log(err);
@@ -59,13 +52,14 @@ const NanoomDetail = () => {
     }, [])
 
     useEffect(() => {
-        // console.log(detailData);
         setDetailTag(detailData.map((item) => {
-            // console.log(detailData[0]["username"]);
             return (
                 <div className='grow' key={item.postId}>
                     <div className="flex justify-between border-b-2 items-center">
-                        <h1 className="font-bold text-xl mb-2">{item.title}</h1>
+                        <h1 className="font-bold text-xl mb-2">
+                            <span className="text-gray-500">[{item.bigTrash.sido}]</span>
+                            &nbsp;{item.title}
+                        </h1>
                         {
                             username === detailData[0]["member"].username
                                 ?
@@ -74,13 +68,13 @@ const NanoomDetail = () => {
                                         <div>
                                             <Link to={`/nanoomEdit/${item.postId}`}>
                                                 <button>
-                                                    <HiMiniPencilSquare className="text-2xl text-gray-400 hover:text-green-600" />
+                                                    <HiMiniPencilSquare className="text-2xl text-gray-400 hover:text-green-600 transition-all" />
                                                 </button>
                                             </Link>
                                         </div>
                                         <div>
                                             <button onClick={handleDelete}>
-                                                <MdDelete className="text-2xl text-gray-400 hover:text-red-500" />
+                                                <MdDelete className="text-2xl text-gray-400 hover:text-red-500 transition-all" />
                                             </button>
                                         </div>
                                     </div>
@@ -125,7 +119,7 @@ const NanoomDetail = () => {
     return (
         <div className="grow flex flex-col bg-[url('./images/board_bg_img.jpg')] bg-center bg-cover">
             <div className='h-full backdrop-blur-sm'>
-                <div className="flex flex-col h-[40%] w-full max-w-[800px] m-auto mt-[4rem] bg-white shadow-lg rounded-t-lg px-[3rem] py-[2rem]">
+                <div className="flex flex-col h-[350px] w-full max-w-[800px] m-auto mt-[4rem] bg-white shadow-lg rounded-t-lg px-[3rem] py-[2rem]">
                     {detailTag}
                 </div>
                 <Comment postId={postId} />

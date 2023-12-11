@@ -52,8 +52,8 @@ const NanoomEdit = () => {
     useEffect(() => {
         if (!detailData) return;
 
+        console.log("디테일 데이터: ",detailData);
         const defaultValues = [detailData.bigTrash.sido, detailData.bigTrash.cate, detailData.bigTrash.name, detailData.bigTrash.size];
-        console.log(detailData);
 
         setDefaultSelect(defaultValues.map((item, idx) => {
             return (
@@ -67,7 +67,7 @@ const NanoomEdit = () => {
 
     useEffect(() => {
         // console.log(postId);
-        const url = `http://10.125.121.214:8080/api/user/nowBoard?postId=${postId}`;
+        const url = `http://10.125.121.214:8080/api/user/nowList/board?postId=${postId}`;
 
         axios.get(url, {
             headers: {
@@ -75,8 +75,9 @@ const NanoomEdit = () => {
             }
         })
             .then(resp => {
-                setDetailData(resp.data[0]);
-                setUpdateTag(resp.data[0].tag);
+                console.log([resp.data])
+                setDetailData(resp.data);
+                // setUpdateTag(resp.data.tag);
             })
             .catch(err => {
                 console.log(err);

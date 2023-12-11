@@ -1,11 +1,10 @@
 import axios from "axios";
 import { useEffect, useRef, useState } from "react";
 import Pagination from "react-js-pagination";
-import { Link, useNavigate } from "react-router-dom"
+import { Link } from "react-router-dom"
 import './react-paginate.css';
 
 const NanoomList = () => {
-    const navigate = useNavigate();
 
     const name = localStorage.getItem("username");
 
@@ -19,14 +18,28 @@ const NanoomList = () => {
 
     // 검색
     const listSearch = () => {
-        let keyword;
+        // 키워드 없이 검색했을 경우 1페이지
+        if (searchKeyword.current.value === "") {
+            const url = "http://10.125.121.214:8080/api/user/nowList?pageNo=1";
 
-        searchKeyword.current.value === ""
-            ? keyword = "전체"
-            : keyword = searchKeyword.current.value;
+            axios.get(url, {
+                headers: {
+                    Authorization: localStorage.getItem("token")
+                }
+            })
+                .then(resp => {
+                    setTotalNum(resp.data.totalElements)
+                    setData(resp.data.content);
+                })
+                .catch(err => {
+                    console.log(err);
+                })
+            return;
+        }
+
+        const keyword = searchKeyword.current.value;
 
         const url = `http://10.125.121.214:8080/api/user/nowListSearch?keyword=${keyword}`;
-        console.log(url);
 
         axios.get(url, {
             headers: {
@@ -34,7 +47,6 @@ const NanoomList = () => {
             }
         })
             .then(resp => {
-                console.log("검색결과: ", resp.data);
                 setData(resp.data);
             })
             .catch(err => {
@@ -45,15 +57,12 @@ const NanoomList = () => {
 
     // 페이지 변경
     const handlePageChange = (page) => {
-        console.log(page);
         setPage(page);
-
     }
 
     // 페이지 변경 했을 때
     useEffect(() => {
         const url = `http://10.125.121.214:8080/api/user/nowList?pageNo=${page}`;
-        console.log(url); // url 확인
 
         axios.get(url, {
             headers: {
@@ -61,7 +70,6 @@ const NanoomList = () => {
             }
         })
             .then(resp => {
-                console.log("페이징 데이터: ", resp.data);
                 setData(resp.data.content);
             })
 
@@ -77,8 +85,6 @@ const NanoomList = () => {
             }
         })
             .then(resp => {
-                
-                console.log("게시글 리스트: ", resp.data);
                 setTotalNum(resp.data.totalElements)
                 setData(resp.data.content);
             })
@@ -97,8 +103,8 @@ const NanoomList = () => {
                 <tr className="" key={item.postId}>
                     {
                         page > 1
-                        ?<td className="pl-5 py-1">{idx + (15*(page-1)) + 1}</td>
-                        :<td className="pl-5 py-1">{idx + 1}</td>
+                            ? <td className="pl-5 py-1">{idx + (15 * (page - 1)) + 1}</td>
+                            : <td className="pl-5 py-1">{idx + 1}</td>
                     }
                     {
                         item.tag === "나눔중"
@@ -106,7 +112,12 @@ const NanoomList = () => {
                             : <td className="text-[#c5c5c5] font-bold">{item.tag}</td>
                     }
 
-                    <td className="hover:underline"><Link to={`/nanoomdetail/${item.postId}`}>{item.title}</Link></td>
+                    <td className="hover:underline w-[300px]">
+                        <Link to={`/nanoomdetail/${item.postId}`}>
+                            <span className="text-gray-500">[{item.bigTrash.sido}]</span>
+                            &nbsp;&nbsp;{item.title}
+                        </Link>
+                    </td>
                     <td>{item.member.username}</td>
                     <td>{item.createDate.slice(0, 10)}</td>
                     <td>{item.count}</td>
@@ -126,7 +137,7 @@ const NanoomList = () => {
         <div className="grow flex flex-col bg-[url('./images/board_bg_img.jpg')] bg-center bg-cover">
             <div className='h-full backdrop-blur-sm'>
                 <h1 className="mt-[1rem] text-center text-lg text-white tracking-wide"><span className="text-[#F9F871]">{name}</span>님 환영합니다.</h1>
-                <div className="flex w-[800px] m-auto flex-col h-[85%] mt-[1rem] bg-white shadow-lg rounded-lg px-[3rem] py-[2rem]">
+                <div className="flex w-[800px] m-auto flex-col h-[720px] mt-[1rem] bg-white shadow-lg rounded-lg px-[3rem] py-[2rem]">
                     <div className="flex items-center justify-between">
                         <div>
                             <h1 className='text-center font-bold text-2xl'>나눔 게시판</h1>

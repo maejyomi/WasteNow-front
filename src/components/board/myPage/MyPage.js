@@ -6,8 +6,6 @@ import MyPageComment from './MyPageComment';
 
 const MyPage = () => {
     const username = useParams().username;
-    // const [userData, setUserData] = useState([]);
-
     const [myBoardList, setMyBoardList] = useState([]);
     const [myCommentList, setMyCommentList] = useState([]);
     const [boardClick, setBoardClick] = useState(true);
@@ -35,11 +33,8 @@ const MyPage = () => {
             }
         })
             .then(resp => {
-                console.log("마이페이지: ", resp.data);
                 setMyBoardList(resp.data.boardList);
                 setMyCommentList(resp.data.commentList)
-                // setUserData(resp.data.boardList);
-
             })
             .catch(err => {
                 console.log(err);

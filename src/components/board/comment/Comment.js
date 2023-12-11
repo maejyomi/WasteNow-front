@@ -31,15 +31,13 @@ const Comment = ({ postId }) => {
         }
       })
       .then((resp) => {
-        console.log(resp.data);
-
         // response로 받기
         setCommData(resp.data);
         comm.current.value = "";
 
       })
       .catch((err) => {
-        console.log("댓글 등록 실패");
+        console.log("댓글 등록 실패", err);
       });
 
 
@@ -55,7 +53,6 @@ const Comment = ({ postId }) => {
       }
     })
       .then(resp => {
-        console.log("댓글 데이터 : ", resp.data)
         setCommData(resp.data);
       })
       .catch(err => {

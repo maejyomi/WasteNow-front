@@ -88,6 +88,11 @@ const Search = () => {
     useEffect(() => {
         if (!sido || !cate) return;
 
+        if(sido === "서구" && cate === "기타"){
+            setOptionTags([]);
+            return;
+        }
+
         axios.get(`http://10.125.121.214:8080/api/wastename?sido=${sido}&cate=${cate}`)
             .then(resp => {
                 // console.log("폐기물명: ", resp.data);
