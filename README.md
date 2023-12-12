@@ -1,17 +1,67 @@
 # 폐기물 NOW
 
->  K-digital 4기 미니 프로젝트 프론트엔드 코드 저장소 입니다.
+>  부산광역시 구별 대형폐기물 수수료 검색 및 무료나눔 게시판 웹 서비스입니다. ([프로젝트 시연 영상](https://www.youtube.com/watch?v=q89CfCnoMpg))
 
 ## 개발환경
 
-- Node.js v18.17.1
-- VSCode
-- Chrome
+### 개발기간
+2023.11.14 ~ 2023.12.12
 
-## 사용한 기술
+### 프로젝트 팀 구성 및 역할
 
+|Frontend|Backend|
+|:---:|:---:|
+|김혜정|강희진|
+|[<img src="https://img.shields.io/badge/github-181717?style=for-the-badge&logo=github&logoColor=white">](https://github.com/maejyomi/WasteNow-front)|[<img src="https://img.shields.io/badge/github-181717?style=for-the-badge&logo=github&logoColor=white">](https://github.com/color7921/WasteNow_BE_Project)|
 
-## Todo
+### 개발 환경
+
+- IDE : Visual Studio Code
+- 브라우저 : Chrome
+
+|기술|버전|
+|:---:|:---:|
+|NodeJs|18.17.1|
+|React|18.2.0|
+|axios|1.6.2|
+|react-js-pagination|3.0.3|
+|react-router-dom|6.18.0|
+|recoil|0.7.7|
+|tailwindcss|3.3.5|
+
+### 사용한 기술
+<img src="https://img.shields.io/badge/html5-E34F26?style=for-the-badge&logo=html5&logoColor=white"> <img src="https://img.shields.io/badge/react-61DAFB?style=for-the-badge&logo=react&logoColor=black">
+<img src="https://img.shields.io/badge/recoil-3578E5?style=for-the-badge&logo=recoil&logoColor=white">
+<img src="https://img.shields.io/badge/axios-5A29E4?style=for-the-badge&logo=axios&logoColor=white">
+<img src="https://img.shields.io/badge/tailwind-06B6D4?style=for-the-badge&logo=tailwindcss&logoColor=white">
+<img src="https://img.shields.io/badge/fontawesome-339AF0?style=for-the-badge&logo=fontawesome&logoColor=white">
+
+## 주요기능
+
+1. 로그인, 회원가입
+
+2. 구별, 카테고리, 키워드로 대형폐기물 수수료 조회
+
+3. 게시판, 댓글 CRUD
+
+## 화면
+### 메인페이지
+
+### 수수료 검색 페이지
+
+### 로그인, 회원가입 페이지
+
+### 나눔 게시판 리스트 페이지
+
+### 게시글, 댓글 상세 페이지
+
+### 게시글 작성 페이지
+
+### 게시글 수정 페이지
+
+### 마이페이지
+
+## 개발 과정
 #### 23.11.16 ~ 23.11.17 : 메인 페이지 및 네비게이션 바 작성
 
 - 전체적인 프레임 구성
