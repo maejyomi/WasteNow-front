@@ -1,4 +1,4 @@
-# 폐기물 NOW
+# WasteNOW
 
 >  부산광역시 구별 대형폐기물 수수료 검색 및 무료나눔 게시판 웹 서비스입니다. ([프로젝트 시연 영상](https://www.youtube.com/watch?v=q89CfCnoMpg))
 
@@ -46,20 +46,30 @@
 
 ## 화면
 ### 메인페이지
+<img src="https://github.com/maejyomi/WasteNow-front/assets/141015562/2fcc20ed-7450-4528-9f14-07b1f1241e98">
 
 ### 수수료 검색 페이지
+<img src="https://github.com/maejyomi/WasteNow-front/assets/141015562/ad1dea74-314d-4e88-8b4e-8df512cef403">
+<img src="https://github.com/maejyomi/WasteNow-front/assets/141015562/b5c7c51c-fc89-4ae1-9b70-6edff310b845">
 
 ### 로그인, 회원가입 페이지
+<img src="https://github.com/maejyomi/WasteNow-front/assets/141015562/4a086799-d1da-4726-bd26-70697588f715">
+<img src="https://github.com/maejyomi/WasteNow-front/assets/141015562/6de81253-b40f-4c6c-84b5-ea5e07fb5cc6">
 
 ### 나눔 게시판 리스트 페이지
+<img src="https://github.com/maejyomi/WasteNow-front/assets/141015562/fe0acda1-83a9-4d60-90ba-652ef584b721">
 
 ### 게시글, 댓글 상세 페이지
+<img src="https://github.com/maejyomi/WasteNow-front/assets/141015562/7e157e7e-2c24-42d6-b377-0d5960b35e3c">
 
 ### 게시글 작성 페이지
+<img src="https://github.com/maejyomi/WasteNow-front/assets/141015562/7b4c939c-b287-407a-80f9-3c2467406833">
 
 ### 게시글 수정 페이지
+<img src="https://github.com/maejyomi/WasteNow-front/assets/141015562/fdbb74d9-d1c4-44ec-b00a-2ac375f8271e">
 
 ### 마이페이지
+<img src="https://github.com/maejyomi/WasteNow-front/assets/141015562/b865076f-7751-4312-8284-39eb8f90cb6f">
 
 ## 개발 과정
 #### 23.11.16 ~ 23.11.17 : 메인 페이지 및 네비게이션 바 작성
