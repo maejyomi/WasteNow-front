@@ -48,6 +48,7 @@ const NanoomList = () => {
         })
             .then(resp => {
                 setData(resp.data);
+                setTotalNum(1)
             })
             .catch(err => {
                 console.log(err);
@@ -78,7 +79,7 @@ const NanoomList = () => {
     // 처음 게시물 리스트 받아오기
     useEffect(() => {
         const url = "http://10.125.121.214:8080/api/user/nowList?pageNo=1";
-
+      
         axios.get(url, {
             headers: {
                 Authorization: localStorage.getItem("token")

@@ -12,14 +12,10 @@ const NanoomEdit = () => {
     const navigate = useNavigate();
 
     const handleTagChange = (e) => {
-        // console.log(e.target.value);
         setUpdateTag(e.target.value);
     }
 
     const handleUpdate = () => {
-        console.log("업데이트 제목: ", updateTitle.current.value);
-        console.log("업데이트 내용: ", updateContent.current.value);
-        console.log("업데이트 태그: ", updateTag);
         if (updateTitle.current.value === "" || updateContent.current.value === "") {
             alert("모든 항목을 입력해주세요");
             return;
@@ -52,7 +48,6 @@ const NanoomEdit = () => {
     useEffect(() => {
         if (!detailData) return;
 
-        console.log("디테일 데이터: ",detailData);
         const defaultValues = [detailData.bigTrash.sido, detailData.bigTrash.cate, detailData.bigTrash.name, detailData.bigTrash.size];
 
         setDefaultSelect(defaultValues.map((item, idx) => {
@@ -66,7 +61,6 @@ const NanoomEdit = () => {
     }, [detailData])
 
     useEffect(() => {
-        // console.log(postId);
         const url = `http://10.125.121.214:8080/api/user/nowList/board?postId=${postId}`;
 
         axios.get(url, {
@@ -75,7 +69,6 @@ const NanoomEdit = () => {
             }
         })
             .then(resp => {
-                console.log([resp.data])
                 setDetailData(resp.data);
                 // setUpdateTag(resp.data.tag);
             })
