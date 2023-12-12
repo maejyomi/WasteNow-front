@@ -1,6 +1,6 @@
 # WasteNOW
 
->  부산광역시 구별 대형폐기물 수수료 검색 및 무료나눔 게시판 웹 서비스입니다. ([프로젝트 시연 영상](https://www.youtube.com/watch?v=q89CfCnoMpg))
+>  부산광역시 구별 대형폐기물 수수료 검색 및 무료나눔 게시판 웹 서비스입니다. ([프로젝트 시연 영상](https://www.youtube.com/watch?v=qFSmtGsdRBI))
 
 ## 개발환경
 
